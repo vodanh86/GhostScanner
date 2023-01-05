@@ -18,11 +18,16 @@ public class GameManager : MonoBehaviour
 
     private RadarController radarController;
 
+    public event System.Action OnScanning;
+    public event System.Action OnGhostFound;
+
     // Start is called before the first frame update
     void Start()
     {
         radarController = GameObject.FindWithTag("Radar").GetComponent<RadarController>();
         ghost = GameObject.FindWithTag("Ghost");
+        ghost.SetActive(false);
+        OnGhostFound += ShowGhost;
         ResetScaner();
     }
 
@@ -31,13 +36,14 @@ public class GameManager : MonoBehaviour
     {
         if (previousTime < scanTime && Time.time > scanTime)
         {
-            FindGhost();
+            OnGhostFound?.Invoke();
         }
         previousTime = Time.time;
     }
 
-    void FindGhost()
+    void ShowGhost()
     {
+        ghost.SetActive(true);
         int direction = Random.Range(0, 2) * 2 - 1;
         radarController.SetGhostPostion(
             Random.Range(ghostRadius / 4, ghostRadius) * direction,
