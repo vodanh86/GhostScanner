@@ -257,6 +257,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 300727772}
   m_CullTransparentMesh: 1
+--- !u!1 &461556433
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 461556435}
+  - component: {fileID: 461556434}
+  m_Layer: 0
+  m_Name: ConfigManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &461556434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461556433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 565680f8590ce400091e316393f4fd92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelConfig: {fileID: 4900000, guid: 8142e938f886748fb9b26a5c5bf275e2, type: 3}
+--- !u!4 &461556435
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461556433}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 360, y: 640, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &853757075
 GameObject:
   m_ObjectHideFlags: 0
@@ -537,7 +581,6 @@ GameObject:
   - component: {fileID: 1195491889}
   - component: {fileID: 1195491888}
   - component: {fileID: 1195491892}
-  - component: {fileID: 1195491893}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -640,19 +683,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c5e345c59d1e4288836fe9ca1af3da7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1195491893
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1195491887}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 565680f8590ce400091e316393f4fd92, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelConfig: {fileID: 4900000, guid: 8142e938f886748fb9b26a5c5bf275e2, type: 3}
 --- !u!1 &1708310376
 GameObject:
   m_ObjectHideFlags: 0

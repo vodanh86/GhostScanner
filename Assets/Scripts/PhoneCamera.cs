@@ -8,14 +8,23 @@ public class PhoneCamera : MonoBehaviour
     private bool camAvailable;
     private WebCamTexture backCam;
     private Texture defaultBackGround;
-
-    public RawImage background;
+    public GameObject background;
     public AspectRatioFitter fit;
+    private float worldScreenHeight;
+    private float worldScreenWidth;
 
     // Start is called before the first frame update
     void Start()
     {
-        defaultBackGround = background.texture;
+        worldScreenHeight = Camera.main.orthographicSize * 2.0f;
+        worldScreenWidth = (float)(worldScreenHeight / Screen.height * Screen.width);
+
+        background.GetComponent<RectTransform>().localScale = new Vector3(
+            worldScreenWidth,
+            worldScreenHeight,
+            1
+        );
+
         WebCamDevice[] devices = WebCamTexture.devices;
 
         if (devices.Length == 0)
@@ -41,8 +50,7 @@ public class PhoneCamera : MonoBehaviour
         }
 
         backCam.Play();
-        background.texture = backCam;
-
+        background.GetComponent<Renderer>().material.mainTexture = backCam;
         camAvailable = true;
     }
 
@@ -53,14 +61,35 @@ public class PhoneCamera : MonoBehaviour
         {
             return;
         }
+        float ratio = (float)backCam.height / (float)backCam.width;
+        float newHeight = worldScreenWidth * ratio;
+        if (newHeight > worldScreenHeight)
+        {
+            background.GetComponent<RectTransform>().localScale = new Vector3(
+                worldScreenWidth,
+                newHeight,
+                1
+            );
+        }
+        else
+        {
+            float newWidth = worldScreenHeight / ratio;
+            background.GetComponent<RectTransform>().localScale = new Vector3(
+                newWidth,
+                worldScreenHeight,
+                1
+            );
+        }
 
-        float ratio = (float)backCam.width / (float)backCam.height;
+        /*
         fit.aspectRatio = ratio;
 
-        float scaleY = backCam.videoVerticallyMirrored ? -1 : 1f;
-        background.rectTransform.localScale = new Vector3(1f, scaleY, 1f);
+         float scaleY = backCam.videoVerticallyMirrored ? -1 : 1f;
+         background.GetComponent<RectTransform>().localScale = new Vector3(1f, scaleY, 1f);
 
+        background.GetComponent<RectTransform>().localScale = Vector3.one * worldScreenHeight;
+*/
         int orient = -backCam.videoRotationAngle;
-        background.rectTransform.localEulerAngles = new Vector3(0, 0, orient);
+        background.GetComponent<RectTransform>().localEulerAngles = new Vector3(0, 0, orient);
     }
 }
