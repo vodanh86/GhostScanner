@@ -300,6 +300,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   background: {fileID: 1691102972}
   fit: {fileID: 0}
+--- !u!1 &1952312915 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1896421081559457085, guid: f14338068f2d1b2458c1c8d0da13b2e8, type: 3}
+  m_PrefabInstance: {fileID: 385367757}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1952312920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1952312915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4c0480e73cd4e844bf15d05f5401f55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _preset: {fileID: 11400000, guid: dbcc855b8aae0cf42a6463e7f1323ddb, type: 2}
+  _camera: {fileID: 0}
+  customAspectRatio: 0
+  _aspectRatio: {x: 4, y: 3}
+  timeScale: 0
 --- !u!1 &5435800311251439389
 GameObject:
   m_ObjectHideFlags: 0
@@ -1040,7 +1062,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &6578044441604646758
 MonoBehaviour:
   m_ObjectHideFlags: 0
