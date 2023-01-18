@@ -281,14 +281,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1006944802}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e12a854d689f4e1f99765ab771c3567, type: 3}
+  m_Script: {fileID: 11500000, guid: ed5e7b360b1664f85b158f91a4bd51c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   timeLoading: 7
   allowGoToSceneAfterLoad: 0
   _sceneName: Main
   textLoadValue: {fileID: 636947263}
-  finishAOA: 0
+  finishAOA: 1
   mycv: {fileID: 1216760571}
   mycam: {fileID: 1380355346}
   sliderBar: {fileID: 18304212}

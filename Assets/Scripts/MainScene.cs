@@ -19,7 +19,9 @@ public class MainScene : MonoBehaviour
 
     public void GoToScene(string sceneName)
     {
+    Debug.Log(sceneName);
         SceneManager.LoadScene(sceneName);
+        Debug.Log(123);
     }
 
     // Update is called once per frame
