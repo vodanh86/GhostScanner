@@ -518,8 +518,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1195491892}
-        m_TargetAssemblyTypeName: MainScene, Assembly-CSharp
+      - m_Target: {fileID: 1195491893}
+        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
         m_MethodName: GoToScene
         m_Mode: 5
         m_Arguments:
@@ -581,6 +581,7 @@ GameObject:
   - component: {fileID: 1195491889}
   - component: {fileID: 1195491888}
   - component: {fileID: 1195491892}
+  - component: {fileID: 1195491893}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -681,6 +682,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c5e345c59d1e4288836fe9ca1af3da7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1195491893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1195491887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e5b83445b0444020bdf70781bf34258, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1708310376

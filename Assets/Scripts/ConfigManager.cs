@@ -11,7 +11,9 @@ public class ConfigManager : MonoBehaviour
 
     public TextAsset levelConfig;
 
-    public Dictionary<int, Level> levelsInJson = new Dictionary<int, Level>();
+    private Dictionary<int, Level> levelsInJson = new Dictionary<int, Level>();
+
+    private int currentLevel;
 
     private void Awake()
     {
@@ -35,10 +37,21 @@ public class ConfigManager : MonoBehaviour
         {
             levelsInJson.Add(i + 1, levels.levels[i]);
         }
+
+        int level = PlayerPrefs.GetInt("level");
+        currentLevel = level > 0 ? level : 1;
     }
 
-    public Level GetLevel(int levelIdx)
+    public void NextLevel()
     {
-        return levelsInJson[levelIdx];
+        currentLevel++;
+        currentLevel = currentLevel >= levelsInJson.Count ? 1 : currentLevel;
+
+        PlayerPrefs.SetInt("level", currentLevel);
+    }
+
+    public Level GetLevel()
+    {
+        return levelsInJson[currentLevel];
     }
 }

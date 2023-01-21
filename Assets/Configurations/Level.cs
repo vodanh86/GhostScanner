@@ -7,6 +7,7 @@ public class Level
 {
     //these variables are case sensitive and must match the strings "firstName" and "lastName" in the JSON.
     public string name;
+    public string ghostName;
     public string image;
 }
 

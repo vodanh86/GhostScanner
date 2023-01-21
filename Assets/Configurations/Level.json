@@ -1,19 +1,23 @@
 {
   "levels": [
     {
-      "name": "ghost 1",
+      "name": "1",
+      "ghostName": "ghost 1",
       "image": "1"
     },
     {
-      "name": "ghost 2",
+      "name": "2",
+      "ghostName": "ghost 2",
       "image": "2"
     },
     {
-      "name": "ghost 3",
+      "name": "3",
+      "ghostName": "ghost 3",
       "image": "3"
     },
     {
-      "name": "ghost 4",
+      "name": "4",
+      "ghostName": "ghost 4",
       "image": "4"
     }
   ]
