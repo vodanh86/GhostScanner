@@ -9,7 +9,6 @@ public class MenuManager : MonoBehaviour
     void Start()
     {
         ConfigManager.Instance.GetLevel();
-        Debug.Log(111);
     }
 
     // Update is called once per frame

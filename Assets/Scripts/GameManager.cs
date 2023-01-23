@@ -74,7 +74,19 @@ public class GameManager : MonoBehaviour
         flashImage.SetActive(false);
         Time.timeScale = 0;
         canvasResult.SetActive(true);
+        SaveCurrentTime();
         OnGhostHide?.Invoke();
+    }
+
+    void SaveCurrentTime()
+    {
+        string lastSavedGhosts = PlayerPrefs.GetString(Constant.PLAYER_PREFS_CATCH_TIME);
+        lastSavedGhosts +=
+            ConfigManager.Instance.GetCurrentLevel()
+            + Constant.PLAYER_PREFS_SEPERATOR
+            + System.DateTime.Now
+            + Constant.PLAYER_PREFS_SEPERATOR;
+        PlayerPrefs.SetString(Constant.PLAYER_PREFS_CATCH_TIME, lastSavedGhosts);
     }
 
     void ResetScaner()
