@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine; //
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -48,6 +45,16 @@ public class ConfigManager : MonoBehaviour
         currentLevel = currentLevel >= levelsInJson.Count ? 1 : currentLevel;
 
         PlayerPrefs.SetInt("level", currentLevel);
+    }
+
+    public int GetCurrentLevel()
+    {
+        return currentLevel;
+    }
+
+    public Level GetLevelInfo(int level)
+    {
+        return levelsInJson[level];
     }
 
     public Level GetLevel()

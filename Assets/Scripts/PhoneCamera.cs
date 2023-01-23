@@ -48,6 +48,14 @@ public class PhoneCamera : MonoBehaviour
         backCam.Play();
         background.GetComponent<Renderer>().material.mainTexture = backCam;
         camAvailable = true;
+
+        GameObject.FindWithTag("GameController").GetComponent<GameManager>().OnGhostHide +=
+            PauseCamera;
+    }
+
+    public void PauseCamera()
+    {
+        backCam.Pause();
     }
 
     // Update is called once per frame
