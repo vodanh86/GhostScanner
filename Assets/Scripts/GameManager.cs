@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -75,6 +76,20 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         canvasResult.SetActive(true);
         SaveCurrentTime();
+
+        // show ghost description
+        Transform ghostContent = canvasResult.transform.Find("[Text]GhostContent");
+        string levelContent =
+            "Level "
+            + ConfigManager.Instance.GetLevel().name
+            + "\n"
+            + "Ghost name: "
+            + ConfigManager.Instance.GetLevel().ghostName;
+        ;
+        Debug.Log(ghostContent);
+        ghostContent.GetComponent<TMP_Text>().text = levelContent;
+        ghostContent.GetComponent<TypeWriterEffect>().SetFullText(levelContent);
+        ghostContent.GetComponent<TypeWriterEffect>().StartShowTextCoroutine();
         OnGhostHide?.Invoke();
     }
 

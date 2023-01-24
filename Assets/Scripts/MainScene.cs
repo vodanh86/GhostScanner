@@ -9,10 +9,19 @@ public class MainScene : MonoBehaviour
 
     void Start()
     {
-        transform.Find("Level").GetComponent<TMP_Text>().text =
-            "Level " + ConfigManager.Instance.GetLevel().name;
-        transform.Find("Ghost").GetComponent<TMP_Text>().text =
-            "Ghost name: " + ConfigManager.Instance.GetLevel().ghostName;
+        Time.timeScale = 1;
+        string levelContent =
+            "Level "
+            + ConfigManager.Instance.GetLevel().name
+            + "\n"
+            + "Ghost name: "
+            + ConfigManager.Instance.GetLevel().ghostName;
+        ;
+        transform.Find("Level").GetComponent<TMP_Text>().text = levelContent;
+        transform.Find("Level").GetComponent<TypeWriterEffect>().SetFullText(levelContent);
+        transform.Find("Level").GetComponent<TypeWriterEffect>().StartShowTextCoroutine();
+        /*transform.Find("Ghost").GetComponent<TMP_Text>().text =
+            "Ghost name: " + ConfigManager.Instance.GetLevel().ghostName;*/
     }
 
     // Update is called once per frame
