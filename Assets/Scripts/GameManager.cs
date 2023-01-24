@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
             "Level "
             + ConfigManager.Instance.GetLevel().name
             + "\n"
-            + "Ghost name: "
+            + "You found: "
             + ConfigManager.Instance.GetLevel().ghostName;
         ;
         Debug.Log(ghostContent);

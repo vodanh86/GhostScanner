@@ -9,6 +9,7 @@ public class Level
     public string name;
     public string ghostName;
     public string image;
+    public string description;
 }
 
 [System.Serializable]

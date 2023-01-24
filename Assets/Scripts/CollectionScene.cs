@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class CollectionScene : MonoBehaviour
 {
     public GameObject GhostInfor;
     public GameObject Content;
+    Texture2D myTexture;
 
     // Start is called before the first frame update
     void Start()
@@ -26,12 +28,28 @@ public class CollectionScene : MonoBehaviour
                 {
                     ghostKey.Add(ghosts[i], ghosts[i + 1]);
                     GameObject ghost = Object.Instantiate(GhostInfor, Content.transform);
-                    ghost.transform.Find("Name").GetComponentInChildren<TMP_Text>().text =
-                        ConfigManager.Instance.GetLevelInfo(int.Parse(ghosts[i])).ghostName;
-                    ghost.transform.Find("CatchTime").GetComponentInChildren<TMP_Text>().text =
-                        "Catched Time: " + ghosts[i + 1];
-                    ghost.transform.Find("Description").GetComponentInChildren<TMP_Text>().text =
-                        ConfigManager.Instance.GetLevelInfo(int.Parse(ghosts[i])).ghostName;
+                    Level levelInfor = ConfigManager.Instance.GetLevelInfo(int.Parse(ghosts[i]));
+
+                    myTexture = Resources.Load("Images/" + levelInfor.image) as Texture2D;
+                    Transform rawImage = ghost.transform.Find("[Image]GhostImage");
+                    string ghostDescription =
+                        levelInfor.ghostName
+                        + "\n"
+                        + "Catched Time: "
+                        + ghosts[i + 1]
+                        + "\n"
+                        + levelInfor.description;
+                    rawImage.GetComponent<RawImage>().texture = myTexture;
+                    ghost.transform.Find("[Text]Description").GetComponentInChildren<TMP_Text>().text =
+                        ghostDescription;
+                    /*ghost.transform
+                        .Find("[Text]CatchTime")
+                        .GetComponentInChildren<TMP_Text>()
+                        .text = "Catched Time: " + ghosts[i + 1];
+                    ghost.transform
+                        .Find("[Text]Description")
+                        .GetComponentInChildren<TMP_Text>()
+                        .text = levelInfor.ghostName;*/
                 }
             }
         }
