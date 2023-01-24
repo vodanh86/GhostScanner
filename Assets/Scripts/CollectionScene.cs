@@ -11,6 +11,7 @@ public class CollectionScene : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1;
         string lastSavedGhosts = PlayerPrefs.GetString(Constant.PLAYER_PREFS_CATCH_TIME);
         if (lastSavedGhosts != null)
         {
