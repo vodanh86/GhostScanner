@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private GameObject canvasResult;
+    private Transform ghostModel;
     private RadarController radarController;
 
     public event System.Action OnScanning;
@@ -37,8 +38,16 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         radarController = GameObject.FindWithTag("Radar").GetComponent<RadarController>();
+        ghostModel = ghost.transform.Find(ConfigManager.Instance.GetLevel().name);
+        if (ghostModel == null)
+        {
+            ghostModel = ghost.transform.Find(Constant.DEFAUL_GHOST_MODEL);
+        }
         Time.timeScale = 1;
-        ghost.SetActive(false);
+        for (int j = 0; j < ghost.transform.childCount; j++)
+        {
+            ghost.transform.GetChild(j).gameObject.SetActive(false);
+        }
         OnGhostFound += ShowGhost;
         ResetScaner();
     }
@@ -67,11 +76,11 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(5.03f);
         scream.Play();
-        ghost.SetActive(true);
+        ghostModel.gameObject.SetActive(true);
         flashImage.SetActive(true);
 
         yield return new WaitForSeconds(3.03f);
-        ghost.SetActive(false);
+        ghostModel.gameObject.SetActive(false);
         flashImage.SetActive(false);
         Time.timeScale = 0;
         canvasResult.SetActive(true);
@@ -86,7 +95,6 @@ public class GameManager : MonoBehaviour
             + "You found: "
             + ConfigManager.Instance.GetLevel().ghostName;
         ;
-        Debug.Log(ghostContent);
         ghostContent.GetComponent<TMP_Text>().text = levelContent;
         ghostContent.GetComponent<TypeWriterEffect>().SetFullText(levelContent);
         ghostContent.GetComponent<TypeWriterEffect>().StartShowTextCoroutine();
