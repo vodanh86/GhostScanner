@@ -90,7 +90,7 @@ public class PhoneCamera : MonoBehaviour
         /*
         fit.aspectRatio = ratio;
 */
-        float scaleY = backCam.videoVerticallyMirrored ? -1 : 1f;
+        float scaleY = backCam.videoVerticallyMirrored ? -1.3f : 1.3f;
         background.GetComponent<RectTransform>().localScale = new Vector3(
             worldScreenHeight,
             scaleY * worldScreenHeight,
