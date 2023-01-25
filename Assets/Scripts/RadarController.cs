@@ -7,6 +7,9 @@ public class RadarController : MonoBehaviour
 {
     [SerializeField]
     private Transform pfRadarPing;
+
+    [SerializeField]
+    private AudioSource audioSource;
     private Transform sweepTransform;
     private float rotationSpeed;
     private bool ghostFound;
@@ -40,6 +43,7 @@ public class RadarController : MonoBehaviour
             radarPing.GetComponent<RadarPing>().SetColor(new Color(1, 0, 0));
             radarPing.GetComponent<RadarPing>().SetDisappearTimer(180f / rotationSpeed * 1f);
             MMVibrationManager.Haptic(HapticTypes.HeavyImpact);
+            audioSource.Play();
         }
     }
 

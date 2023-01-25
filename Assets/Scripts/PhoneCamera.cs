@@ -19,7 +19,7 @@ public class PhoneCamera : MonoBehaviour
         worldScreenHeight = Camera.main.orthographicSize * 2.0f;
         worldScreenWidth = (float)(worldScreenHeight / Screen.height * Screen.width);
 
-        background.transform.localScale = new Vector3(worldScreenWidth, worldScreenHeight, 1f);
+        background.transform.localScale = new Vector3(worldScreenHeight, worldScreenHeight, worldScreenHeight);
 
         WebCamDevice[] devices = WebCamTexture.devices;
 
@@ -90,7 +90,7 @@ public class PhoneCamera : MonoBehaviour
         /*
         fit.aspectRatio = ratio;
 */
-        float scaleY = backCam.videoVerticallyMirrored ? -1.3f : 1.3f;
+        float scaleY = backCam.videoVerticallyMirrored ? -1 : 1f;
         background.GetComponent<RectTransform>().localScale = new Vector3(
             worldScreenHeight,
             scaleY * worldScreenHeight,
