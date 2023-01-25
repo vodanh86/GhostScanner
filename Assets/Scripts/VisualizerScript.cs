@@ -11,7 +11,7 @@ public class VisualizerScript : MonoBehaviour
     public Color visualizerColor = Color.gray;
 
     [Space(15)]
-    public AudioClip audioClip;
+    public AudioClip[] audioClips;
     public bool loop = true;
 
     [Space(15), Range(64, 8192)]
@@ -25,18 +25,23 @@ public class VisualizerScript : MonoBehaviour
     {
         visualizerObjects = GetComponentsInChildren<VisualizerObjectScript>();
 
-        if (!audioClip)
+        if (audioClips.Length == 0)
             return;
 
         audioSource = new GameObject("_AudioSource").AddComponent<AudioSource>();
         audioSource.loop = loop;
-        audioSource.clip = audioClip;
+        audioSource.clip = audioClips[Random.Range(0, audioClips.Length)];
         audioSource.Play();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (!audioSource.isPlaying)
+        {
+            audioSource.clip = audioClips[Random.Range(0, audioClips.Length)];
+            audioSource.Play();
+        }
         float[] spectrumData = audioSource.GetSpectrumData(
             visualizerSimples,
             0,

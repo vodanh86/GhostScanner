@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MoreMountains.NiceVibrations;
 
 public class RadarController : MonoBehaviour
 {
@@ -26,9 +27,9 @@ public class RadarController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float previousRotation = (sweepTransform.eulerAngles.z % 360) ;
+        float previousRotation = (sweepTransform.eulerAngles.z % 360);
         sweepTransform.eulerAngles -= new Vector3(0, 0, rotationSpeed * Time.deltaTime);
-        float currentRotation = (sweepTransform.eulerAngles.z % 360) ;
+        float currentRotation = (sweepTransform.eulerAngles.z % 360);
 
         float angles = Mathf.Atan2(yAxis, xAxis) * Mathf.Rad2Deg;
 
@@ -38,6 +39,7 @@ public class RadarController : MonoBehaviour
             radarPing.transform.localPosition = new Vector3(xAxis, yAxis, 0);
             radarPing.GetComponent<RadarPing>().SetColor(new Color(1, 0, 0));
             radarPing.GetComponent<RadarPing>().SetDisappearTimer(180f / rotationSpeed * 1f);
+            MMVibrationManager.Haptic(HapticTypes.HeavyImpact);
         }
     }
 
