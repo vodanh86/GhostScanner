@@ -6,6 +6,7 @@ public class ScanState
     {
         IDLE,
         SCANNING,
+        FOUND,
         DONE
     }
 

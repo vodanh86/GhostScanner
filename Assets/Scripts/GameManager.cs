@@ -26,20 +26,31 @@ public class GameManager : MonoBehaviour
     private GameObject ghost;
 
     [SerializeField]
+    private int foundTime;
+
+    [SerializeField]
     private GameObject flashImage;
+
+    [SerializeField]
+    private GameObject textMessage;
 
     [SerializeField]
     private GameObject canvasResult;
     private GameObject ghostModel;
     private RadarController radarController;
-
+    private ScanState scanState;
     public event System.Action OnScanning;
     public event System.Action OnGhostFound;
     public event System.Action OnGhostHide;
 
+    private int count;
+
     // Start is called before the first frame update
     void Start()
     {
+        count = 0;
+        scanState = new ScanState();
+        scanState.SetState((int)ScanState.State.SCANNING);
         radarController = GameObject.FindWithTag("Radar").GetComponent<RadarController>();
         ghostModel = ghost.transform.Find(ConfigManager.Instance.GetLevel().name).gameObject;
         if (ghostModel == null)
@@ -58,29 +69,50 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (previousTime < scanTime && Time.time > scanTime)
+        if (Time.time > scanTime && scanState.GetState() == (int)ScanState.State.SCANNING)
         {
-            OnGhostFound?.Invoke();
+            count++;
+            scanState.SetState((int)ScanState.State.FOUND);
+            textMessage.GetComponent<TypeWriterEffect>().SetFullText("Signal Found");
+            textMessage.GetComponent<TypeWriterEffect>().StartShowTextCoroutine();
+
+            int direction = Random.Range(0, 2) * 2 - 1;
+            radarController.SetGhostPostion(
+                Random.Range(ghostRadius / 4, ghostRadius) * direction,
+                Random.Range(ghostRadius / 4, ghostRadius)
+            );
+            StartCoroutine(HideGhost());
+
+            if (count > Random.Range(foundTime, foundTime * 3))
+            {
+                OnGhostFound?.Invoke();
+            }
         }
-        previousTime = Time.time;
+    }
+
+    IEnumerator HideGhost()
+    {
+        scream.clip = audioClips[2];
+        scream.Play();
+        yield return new WaitForSeconds(10);
+        textMessage.GetComponent<TMP_Text>().text = "";
+        scanState.SetState((int)ScanState.State.SCANNING);
+        ResetScaner();
+        //StartCoroutine(EndJump());
     }
 
     void ShowGhost()
     {
-        int direction = Random.Range(0, 2) * 2 - 1;
-        radarController.SetGhostPostion(
-            Random.Range(ghostRadius / 4, ghostRadius) * direction,
-            Random.Range(ghostRadius / 4, ghostRadius)
-        );
-        StartCoroutine(EndJump());
+        StartCoroutine(GhostJumps());
     }
 
-    IEnumerator EndJump()
+    IEnumerator GhostJumps()
     {
         yield return new WaitForSeconds(5.03f);
+        textMessage.GetComponent<TMP_Text>().text = "";
+        flashImage.SetActive(true);
         ghostModel.SetActive(true);
         ghostModel.GetComponent<Animator>().SetBool("yelling", true);
-        flashImage.SetActive(true);
 
         yield return new WaitForSeconds(1);
         if (ConfigManager.Instance.GetLevel().sex == "female")
@@ -92,7 +124,7 @@ public class GameManager : MonoBehaviour
             scream.clip = audioClips[1];
         }
         scream.Play();
-        
+
         yield return new WaitForSeconds(3.03f);
         ghostModel.SetActive(false);
         flashImage.SetActive(false);
@@ -129,6 +161,7 @@ public class GameManager : MonoBehaviour
     void ResetScaner()
     {
         scanTime = Time.time + Random.Range(minScanTime, maxScanTime);
+        previousTime = Time.time;
         radarController.ClearGhost();
     }
 
