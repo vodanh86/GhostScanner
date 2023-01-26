@@ -20,6 +20,9 @@ public class GameManager : MonoBehaviour
     private AudioSource scream;
 
     [SerializeField]
+    private AudioClip[] audioClips;
+
+    [SerializeField]
     private GameObject ghost;
 
     [SerializeField]
@@ -27,7 +30,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private GameObject canvasResult;
-    private Transform ghostModel;
+    private GameObject ghostModel;
     private RadarController radarController;
 
     public event System.Action OnScanning;
@@ -38,10 +41,10 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         radarController = GameObject.FindWithTag("Radar").GetComponent<RadarController>();
-        ghostModel = ghost.transform.Find(ConfigManager.Instance.GetLevel().name);
+        ghostModel = ghost.transform.Find(ConfigManager.Instance.GetLevel().name).gameObject;
         if (ghostModel == null)
         {
-            ghostModel = ghost.transform.Find(Constant.DEFAUL_GHOST_MODEL);
+            ghostModel = ghost.transform.Find(Constant.DEFAUL_GHOST_MODEL).gameObject;
         }
         Time.timeScale = 1;
         for (int j = 0; j < ghost.transform.childCount; j++)
@@ -75,12 +78,23 @@ public class GameManager : MonoBehaviour
     IEnumerator EndJump()
     {
         yield return new WaitForSeconds(5.03f);
-        scream.Play();
-        ghostModel.gameObject.SetActive(true);
+        ghostModel.SetActive(true);
+        ghostModel.GetComponent<Animator>().SetBool("yelling", true);
         flashImage.SetActive(true);
 
+        yield return new WaitForSeconds(1);
+        if (ConfigManager.Instance.GetLevel().sex == "female")
+        {
+            scream.clip = audioClips[0];
+        }
+        else
+        {
+            scream.clip = audioClips[1];
+        }
+        scream.Play();
+        
         yield return new WaitForSeconds(3.03f);
-        ghostModel.gameObject.SetActive(false);
+        ghostModel.SetActive(false);
         flashImage.SetActive(false);
         Time.timeScale = 0;
         canvasResult.SetActive(true);

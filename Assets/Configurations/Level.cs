@@ -10,6 +10,7 @@ public class Level
     public string ghostName;
     public string image;
     public string description;
+    public string sex;
 }
 
 [System.Serializable]
