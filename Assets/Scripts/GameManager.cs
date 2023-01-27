@@ -13,6 +13,12 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private int ghostRadius;
+
+    [SerializeField]
+    private GameObject mainCamera;
+
+    [SerializeField]
+    private GameObject filterCamera;
     private float scanTime;
     private float previousTime;
 
@@ -72,6 +78,8 @@ public class GameManager : MonoBehaviour
         if (Time.time > scanTime && scanState.GetState() == (int)ScanState.State.SCANNING)
         {
             count++;
+            filterCamera.SetActive(true);
+            mainCamera.SetActive(false);
             scanState.SetState((int)ScanState.State.FOUND);
             textMessage.GetComponent<TypeWriterEffect>().SetFullText("Signal Found");
             textMessage.GetComponent<TypeWriterEffect>().StartShowTextCoroutine();
@@ -97,6 +105,9 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(10);
         textMessage.GetComponent<TMP_Text>().text = "";
         scanState.SetState((int)ScanState.State.SCANNING);
+        mainCamera.SetActive(true);
+        filterCamera.SetActive(false);
+
         ResetScaner();
         //StartCoroutine(EndJump());
     }
