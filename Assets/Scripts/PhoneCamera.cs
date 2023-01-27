@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PhoneCamera : MonoBehaviour
 {
@@ -19,7 +20,11 @@ public class PhoneCamera : MonoBehaviour
         worldScreenHeight = Camera.main.orthographicSize * 2.0f;
         worldScreenWidth = (float)(worldScreenHeight / Screen.height * Screen.width);
 
-        background.transform.localScale = new Vector3(worldScreenHeight, worldScreenHeight, worldScreenHeight);
+        background.transform.localScale = new Vector3(
+            worldScreenHeight,
+            worldScreenHeight,
+            worldScreenHeight
+        );
 
         WebCamDevice[] devices = WebCamTexture.devices;
 
@@ -65,39 +70,28 @@ public class PhoneCamera : MonoBehaviour
         {
             return;
         }
-        float ratio = (float)backCam.height / (float)backCam.width;
-        float newHeight = worldScreenWidth * ratio;
-        /* if (newHeight > worldScreenHeight)
-         {
-             background.GetComponent<RectTransform>().localScale = new Vector3(
-                 worldScreenWidth / 2,
-                 newHeight / 2,
-                 0.5f
-             );
-         }
-         else
-         {
-             float newWidth = worldScreenHeight / ratio;
-             background.GetComponent<RectTransform>().localScale = new Vector3(
-                 newWidth / 2,
-                 worldScreenHeight / 2,
-                 0.5f
-             );
-         }
- 
-         background.GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1f);
- */
-        /*
-        fit.aspectRatio = ratio;
-*/
-        float scaleY = backCam.videoVerticallyMirrored ? -1 : 1f;
-        background.GetComponent<RectTransform>().localScale = new Vector3(
-            worldScreenHeight,
-            scaleY * worldScreenHeight,
-            worldScreenHeight
-        );
 
         int orient = -backCam.videoRotationAngle;
         background.GetComponent<RectTransform>().localEulerAngles = new Vector3(0, 0, orient);
+
+        float ratio = (float)backCam.height / (float)backCam.width;
+        float scaleY = backCam.videoVerticallyMirrored ? -1 : 1f;
+
+        if (orient == 0)
+        {
+            background.GetComponent<RectTransform>().localScale = new Vector3(
+                worldScreenHeight / ratio,
+                scaleY * worldScreenHeight,
+                worldScreenHeight
+            );
+        }
+        else
+        {
+            background.GetComponent<RectTransform>().localScale = new Vector3(
+                worldScreenWidth / ratio,
+                scaleY * worldScreenWidth,
+                worldScreenWidth
+            );
+        }
     }
 }
