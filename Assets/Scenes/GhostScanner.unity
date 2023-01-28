@@ -1549,8 +1549,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb65f15a7a241433cbb554e87d2206d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minScanTime: 5
-  maxScanTime: 8
+  minScanTime: 10
+  maxScanTime: 15
   ghostRadius: 70
   mainCamera: {fileID: 963194225}
   filterCamera: {fileID: 1543621229}
@@ -1558,9 +1558,9 @@ MonoBehaviour:
   audioClips:
   - {fileID: 8300000, guid: 60fd26f3a0a1444f1a10710c05260a22, type: 3}
   - {fileID: 8300000, guid: 26d2be716146b4dd8afb6713d27073d6, type: 3}
-  - {fileID: 8300000, guid: 9c6edd5c3a26a4769a8aee006cd09d69, type: 3}
+  - {fileID: 8300000, guid: e041d2e4b36ce4bf396c0188ecc48aa3, type: 3}
   ghost: {fileID: 423789210}
-  foundTime: 3
+  foundTime: 2
   flashImage: {fileID: 1658440903}
   textMessage: {fileID: 1439949169}
   canvasResult: {fileID: 1760776868}
@@ -2495,7 +2495,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 0
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -3310,16 +3310,16 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 77e4c0d4c4df949feaac28cd659831b5, type: 3}
     - target: {fileID: 1196797323905981127, guid: 632f98470b6374cc285289e791097a50, type: 3}
       propertyPath: audioClips.Array.size
-      value: 9
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1196797323905981127, guid: 632f98470b6374cc285289e791097a50, type: 3}
       propertyPath: audioClips.Array.data[0]
       value: 
-      objectReference: {fileID: 8300000, guid: 96b07bd44b6354e209c45aa1fe04d6cf, type: 3}
+      objectReference: {fileID: 8300000, guid: ecf07317a846c46889a16421d3623964, type: 3}
     - target: {fileID: 1196797323905981127, guid: 632f98470b6374cc285289e791097a50, type: 3}
       propertyPath: audioClips.Array.data[1]
       value: 
-      objectReference: {fileID: 8300000, guid: ba062974c57894d71a734fa40d22721e, type: 3}
+      objectReference: {fileID: 8300000, guid: 0b60653b59e1d46e5a8bd1d4cc0e8754, type: 3}
     - target: {fileID: 1196797323905981127, guid: 632f98470b6374cc285289e791097a50, type: 3}
       propertyPath: audioClips.Array.data[2]
       value: 
@@ -3331,7 +3331,7 @@ PrefabInstance:
     - target: {fileID: 1196797323905981127, guid: 632f98470b6374cc285289e791097a50, type: 3}
       propertyPath: audioClips.Array.data[4]
       value: 
-      objectReference: {fileID: 8300000, guid: dacf27c7a15b44dedb4ada76875f3e38, type: 3}
+      objectReference: {fileID: 8300000, guid: 96b07bd44b6354e209c45aa1fe04d6cf, type: 3}
     - target: {fileID: 1196797323905981127, guid: 632f98470b6374cc285289e791097a50, type: 3}
       propertyPath: audioClips.Array.data[5]
       value: 

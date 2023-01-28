@@ -82,13 +82,10 @@ public class GameManager : MonoBehaviour
             mainCamera.SetActive(false);
             scanState.SetState((int)ScanState.State.FOUND);
             textMessage.GetComponent<TypeWriterEffect>().SetFullText("Signal Found");
-            textMessage.GetComponent<TypeWriterEffect>().StartShowTextCoroutine();
+            textMessage.GetComponent<TypeWriterEffect>().StartShowTextCoroutine(false);
 
-            int direction = Random.Range(0, 2) * 2 - 1;
-            radarController.SetGhostPostion(
-                Random.Range(ghostRadius / 4, ghostRadius) * direction,
-                Random.Range(ghostRadius / 4, ghostRadius)
-            );
+            int direction = Random.Range(0, 2) - 1;
+            radarController.SetGhostPostion(direction, Random.Range(ghostRadius / 4, ghostRadius));
             StartCoroutine(HideGhost());
 
             if (count > Random.Range(foundTime, foundTime * 3))
@@ -101,9 +98,17 @@ public class GameManager : MonoBehaviour
     IEnumerator HideGhost()
     {
         scream.clip = audioClips[2];
+        scream.loop = true;
         scream.Play();
         yield return new WaitForSeconds(10);
+
         textMessage.GetComponent<TMP_Text>().text = "";
+        scream.loop = false;
+        scream.Stop();
+
+        textMessage.GetComponent<TypeWriterEffect>().SetFullText("Signal Lost");
+        textMessage.GetComponent<TypeWriterEffect>().StartShowTextCoroutine(true);
+
         scanState.SetState((int)ScanState.State.SCANNING);
         mainCamera.SetActive(true);
         filterCamera.SetActive(false);
@@ -134,6 +139,7 @@ public class GameManager : MonoBehaviour
         {
             scream.clip = audioClips[1];
         }
+        scream.loop = false;
         scream.Play();
 
         yield return new WaitForSeconds(3.03f);
@@ -154,7 +160,7 @@ public class GameManager : MonoBehaviour
         ;
         ghostContent.GetComponent<TMP_Text>().text = levelContent;
         ghostContent.GetComponent<TypeWriterEffect>().SetFullText(levelContent);
-        ghostContent.GetComponent<TypeWriterEffect>().StartShowTextCoroutine();
+        ghostContent.GetComponent<TypeWriterEffect>().StartShowTextCoroutine(false);
         OnGhostHide?.Invoke();
     }
 

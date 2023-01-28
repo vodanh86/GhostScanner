@@ -14,14 +14,17 @@ public class TypeWriterEffect : MonoBehaviour
     [SerializeField]
     private AudioSource typingSound;
 
+    private bool hideAtTheEnd;
+
     public void SetFullText(string levelContent)
     {
         fullText = levelContent;
     }
 
     // Use this for initialization
-    public void StartShowTextCoroutine()
+    public void StartShowTextCoroutine(bool hide)
     {
+        hideAtTheEnd = hide;
         StartCoroutine(ShowText());
     }
 
@@ -32,6 +35,12 @@ public class TypeWriterEffect : MonoBehaviour
             currentText = fullText.Substring(0, i);
             this.GetComponent<TMP_Text>().text = currentText;
             typingSound.Play();
+            yield return new WaitForSecondsRealtime(delay);
+        }
+        if (hideAtTheEnd)
+        {
+            yield return new WaitForSecondsRealtime(delay);
+            this.GetComponent<TMP_Text>().text = "";
             yield return new WaitForSecondsRealtime(delay);
         }
     }

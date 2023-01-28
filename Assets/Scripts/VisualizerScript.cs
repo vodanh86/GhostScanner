@@ -30,6 +30,7 @@ public class VisualizerScript : MonoBehaviour
 
         audioSource = new GameObject("_AudioSource").AddComponent<AudioSource>();
         audioSource.loop = loop;
+        audioSource.volume = 0.3f;
         audioSource.clip = audioClips[Random.Range(0, audioClips.Length)];
         audioSource.Play();
     }
