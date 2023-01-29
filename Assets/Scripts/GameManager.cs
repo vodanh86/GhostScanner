@@ -51,6 +51,11 @@ public class GameManager : MonoBehaviour
 
     private int count;
 
+    void Awake()
+    {
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -84,8 +89,11 @@ public class GameManager : MonoBehaviour
             textMessage.GetComponent<TypeWriterEffect>().SetFullText("Signal Found");
             textMessage.GetComponent<TypeWriterEffect>().StartShowTextCoroutine(false);
 
-            int direction = Random.Range(0, 2) - 1;
-            radarController.SetGhostPostion(direction, Random.Range(ghostRadius / 4, ghostRadius));
+            int direction = Random.Range(0, 2) * 2 - 1;
+            radarController.SetGhostPostion(
+                Random.Range(ghostRadius / 4, ghostRadius) * direction,
+                Random.Range(ghostRadius / 4, ghostRadius)
+            );
             StartCoroutine(HideGhost());
 
             if (count > Random.Range(foundTime, foundTime * 3))

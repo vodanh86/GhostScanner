@@ -15,7 +15,7 @@ public class CollectionScene : MonoBehaviour
     {
         Time.timeScale = 1;
         string lastSavedGhosts = PlayerPrefs.GetString(Constant.PLAYER_PREFS_CATCH_TIME);
-        if (lastSavedGhosts == null)
+        if (lastSavedGhosts == null || lastSavedGhosts == "")
         {
             lastSavedGhosts =
                 "1" + Constant.PLAYER_PREFS_SEPERATOR + "XXXXXX" + Constant.PLAYER_PREFS_SEPERATOR;
