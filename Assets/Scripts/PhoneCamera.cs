@@ -8,7 +8,9 @@ public class PhoneCamera : MonoBehaviour
 {
     private bool camAvailable;
     private WebCamTexture backCam;
-    private Texture defaultBackGround;
+
+    [SerializeField]
+    private GameObject defaultBackGround;
     public GameObject background;
     public AspectRatioFitter fit;
     private float worldScreenHeight;
@@ -76,21 +78,35 @@ public class PhoneCamera : MonoBehaviour
 
         float ratio = (float)backCam.height / (float)backCam.width;
         float scaleY = backCam.videoVerticallyMirrored ? -1 : 1f;
+        float minScale =
+            worldScreenHeight < worldScreenWidth ? worldScreenHeight : worldScreenWidth;
+        float maxScale =
+            worldScreenHeight > worldScreenWidth ? worldScreenHeight : worldScreenWidth;
 
         if (orient == 0)
         {
             background.GetComponent<RectTransform>().localScale = new Vector3(
-                worldScreenHeight / ratio,
-                scaleY * worldScreenHeight,
-                worldScreenHeight
+                minScale / ratio,
+                scaleY * minScale,
+                minScale
+            );
+            defaultBackGround.GetComponent<RectTransform>().localScale = new Vector3(
+                maxScale / ratio,
+                scaleY * maxScale,
+                maxScale
             );
         }
         else
         {
             background.GetComponent<RectTransform>().localScale = new Vector3(
-                worldScreenWidth / ratio,
-                scaleY * worldScreenWidth,
-                worldScreenWidth
+                minScale / ratio,
+                scaleY * minScale,
+                minScale
+            );
+            defaultBackGround.GetComponent<RectTransform>().localScale = new Vector3(
+                maxScale / ratio,
+                scaleY * maxScale,
+                maxScale
             );
         }
     }

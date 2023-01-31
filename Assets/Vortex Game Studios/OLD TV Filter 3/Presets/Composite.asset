@@ -41,7 +41,7 @@ MonoBehaviour:
     staticScale: 1
     staticOffset: 0.03
     dirtPattern: {fileID: 2800000, guid: df0ffcc7ed4d822408d84a34b9d048e0, type: 3}
-    dirtMagnitude: 0.22
+    dirtMagnitude: 0.195
   _televisionFilter:
     _foldout: 1
     materials:
@@ -67,7 +67,7 @@ MonoBehaviour:
     _enabled: 1
     pattern: {fileID: 2800000, guid: a1dbf24ae6b15204d865e07f735d09aa, type: 3}
     lineCount: 225
-    magnetude: 0.5
+    magnetude: 0.08
   _tubeFilter:
     _foldout: 1
     materials:
