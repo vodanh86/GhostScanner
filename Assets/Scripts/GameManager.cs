@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour
             );
             StartCoroutine(HideGhost());
 
-            if (count > Random.Range(foundTime, foundTime * 3))
+            if (count >= Random.Range(foundTime, foundTime * 2))
             {
                 OnGhostFound?.Invoke();
             }
