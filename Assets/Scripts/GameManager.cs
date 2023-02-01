@@ -159,6 +159,7 @@ public class GameManager : MonoBehaviour
 
         // show ghost description
         Transform ghostContent = canvasResult.transform.Find("[Text]GhostContent");
+        Transform btnNextLevel = canvasResult.transform.Find("[Button]NextLevel");
         string levelContent =
             "Level "
             + ConfigManager.Instance.GetLevel().name
@@ -169,6 +170,7 @@ public class GameManager : MonoBehaviour
         ghostContent.GetComponent<TMP_Text>().text = levelContent;
         ghostContent.GetComponent<TypeWriterEffect>().SetFullText(levelContent);
         ghostContent.GetComponent<TypeWriterEffect>().StartShowTextCoroutine(false);
+        btnNextLevel.GetComponent<EnableButton>().StartCountdown();
         OnGhostHide?.Invoke();
     }
 
