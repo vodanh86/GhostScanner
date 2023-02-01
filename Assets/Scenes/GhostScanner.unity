@@ -1343,7 +1343,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Collection
+          m_StringArgument: Main
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &441287700
@@ -2626,6 +2626,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 611259267}
     m_Modifications:
+    - target: {fileID: 8191186499048022164, guid: 55af6305300b74212b62ed583c8100be, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -11.5981
+      objectReference: {fileID: 0}
+    - target: {fileID: 8191186499048022164, guid: 55af6305300b74212b62ed583c8100be, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8191186499048022177, guid: 55af6305300b74212b62ed583c8100be, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2717,6 +2725,18 @@ PrefabInstance:
     - target: {fileID: 8191186499048022258, guid: 55af6305300b74212b62ed583c8100be, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8191186499048022258, guid: 55af6305300b74212b62ed583c8100be, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -190.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 8191186499048022258, guid: 55af6305300b74212b62ed583c8100be, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 3.7369
+      objectReference: {fileID: 0}
+    - target: {fileID: 8191186499048022258, guid: 55af6305300b74212b62ed583c8100be, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 5.9109
       objectReference: {fileID: 0}
     - target: {fileID: 8191186512520100909, guid: 55af6305300b74212b62ed583c8100be, type: 3}
       propertyPath: m_Name
