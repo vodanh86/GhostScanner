@@ -2626,6 +2626,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 611259267}
     m_Modifications:
+    - target: {fileID: 5716143462789038565, guid: 55af6305300b74212b62ed583c8100be, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5716143462789038565, guid: 55af6305300b74212b62ed583c8100be, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1345673465}
+    - target: {fileID: 5716143462789038565, guid: 55af6305300b74212b62ed583c8100be, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: NextLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 5716143462789038565, guid: 55af6305300b74212b62ed583c8100be, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MenuManager, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 8191186499048022164, guid: 55af6305300b74212b62ed583c8100be, type: 3}
       propertyPath: m_SizeDelta.y
       value: -11.5981
@@ -2741,6 +2757,22 @@ PrefabInstance:
     - target: {fileID: 8191186512520100909, guid: 55af6305300b74212b62ed583c8100be, type: 3}
       propertyPath: m_Name
       value: EnergyHeight
+      objectReference: {fileID: 0}
+    - target: {fileID: 8830327266828663145, guid: 55af6305300b74212b62ed583c8100be, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8830327266828663145, guid: 55af6305300b74212b62ed583c8100be, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1345673465}
+    - target: {fileID: 8830327266828663145, guid: 55af6305300b74212b62ed583c8100be, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: NextLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 8830327266828663145, guid: 55af6305300b74212b62ed583c8100be, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MenuManager, Assembly-CSharp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55af6305300b74212b62ed583c8100be, type: 3}
