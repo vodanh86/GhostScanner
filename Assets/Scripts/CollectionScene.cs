@@ -41,15 +41,15 @@ public class CollectionScene : MonoBehaviour
                 myTexture = Resources.Load("Images/" + levelInfor.image) as Texture2D;
                 Transform rawImage = ghost.transform.Find("[Image]GhostImage");
                 string ghostDescription =
-                    levelInfor.ghostName
-                    + "\n"
-                    + "Catched Time: "
-                    + ghosts[i + 1]
-                    + "\n"
-                    + levelInfor.description
-                    + "\n"
-                    + ghosts[i + 2];
+                    "Catched Time: " + ghosts[i + 1] + "\n" + levelInfor.description + "\n";
+                if (ghosts[i + 2] == "1")
+                {
+                    ghost.transform.Find("[Image]Cover").gameObject.SetActive(false);
+                    ghost.transform.Find("[Button]Unlock").gameObject.SetActive(false);
+                }
                 rawImage.GetComponent<RawImage>().texture = myTexture;
+                ghost.transform.Find("[Text]Name").GetComponentInChildren<TMP_Text>().text =
+                    levelInfor.ghostName;
                 ghost.transform.Find("[Text]Description").GetComponentInChildren<TMP_Text>().text =
                     ghostDescription;
                 /*ghost.transform

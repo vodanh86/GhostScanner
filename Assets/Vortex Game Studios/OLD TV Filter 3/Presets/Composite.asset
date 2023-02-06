@@ -18,7 +18,7 @@ MonoBehaviour:
     - {fileID: 0}
     _enabled: 1
     pattern: {fileID: 2800000, guid: ac1339c0334ed4f458ea900a2064fa14, type: 3}
-    magnetude: -0.029
+    magnetude: 0
     scale: {x: 1, y: 1}
   _compositeFilter:
     _foldout: 1

@@ -46,6 +46,7 @@ public class MenuManager : MonoBehaviour
     {
         clickAudio.Play();
         Utils.SaveModel(ConfigManager.Instance.GetLevel().name, Constant.SAVED_MODEL);
+        ConfigManager.Instance.NextLevel();
         ConfigManager.Instance.nextScene = Constant.MAIN_SCENE_NAME;
         SceneManager.LoadScene(Constant.COLLECTION_SCENE_NAME);
     }
