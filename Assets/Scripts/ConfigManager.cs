@@ -8,6 +8,8 @@ public class ConfigManager : MonoBehaviour
 
     public TextAsset levelConfig;
 
+    public string nextScene;
+
     private Dictionary<int, Level> levelsInJson = new Dictionary<int, Level>();
 
     private int currentLevel;

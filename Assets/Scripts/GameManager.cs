@@ -175,14 +175,14 @@ public class GameManager : MonoBehaviour
     }
 
     void SaveCurrentTime()
-    {
+    {/*
         string lastSavedGhosts = PlayerPrefs.GetString(Constant.PLAYER_PREFS_CATCH_TIME);
         lastSavedGhosts +=
             ConfigManager.Instance.GetCurrentLevel()
             + Constant.PLAYER_PREFS_SEPERATOR
             + System.DateTime.Now
             + Constant.PLAYER_PREFS_SEPERATOR;
-        PlayerPrefs.SetString(Constant.PLAYER_PREFS_CATCH_TIME, lastSavedGhosts);
+        PlayerPrefs.SetString(Constant.PLAYER_PREFS_CATCH_TIME, lastSavedGhosts);*/
     }
 
     void ResetScaner()

@@ -18,14 +18,19 @@ public class CollectionScene : MonoBehaviour
         if (lastSavedGhosts == null || lastSavedGhosts == "")
         {
             lastSavedGhosts =
-                "1" + Constant.PLAYER_PREFS_SEPERATOR + "XXXXXX" + Constant.PLAYER_PREFS_SEPERATOR;
+                "1"
+                + Constant.PLAYER_PREFS_SEPERATOR
+                + "XXXXXX"
+                + Constant.PLAYER_PREFS_SEPERATOR
+                + Constant.NOT_SAVED_MODEL
+                + Constant.PLAYER_PREFS_SEPERATOR;
         }
         string[] ghosts = lastSavedGhosts.Split(
             new string[] { Constant.PLAYER_PREFS_SEPERATOR },
             System.StringSplitOptions.None
         );
         Dictionary<string, string> ghostKey = new Dictionary<string, string>();
-        for (int i = 0; i + 1 < ghosts.Length; i += 2)
+        for (int i = 0; i + 1 < ghosts.Length; i += 3)
         {
             if (!ghostKey.ContainsKey(ghosts[i]))
             {
@@ -41,7 +46,9 @@ public class CollectionScene : MonoBehaviour
                     + "Catched Time: "
                     + ghosts[i + 1]
                     + "\n"
-                    + levelInfor.description;
+                    + levelInfor.description
+                    + "\n"
+                    + ghosts[i + 2];
                 rawImage.GetComponent<RawImage>().texture = myTexture;
                 ghost.transform.Find("[Text]Description").GetComponentInChildren<TMP_Text>().text =
                     ghostDescription;

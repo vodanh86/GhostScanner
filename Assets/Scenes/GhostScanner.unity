@@ -2319,8 +2319,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1345673465}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
-        m_MethodName: GoToScene
-        m_Mode: 5
+        m_MethodName: GoCollection
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4709,6 +4709,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelConfig: {fileID: 4900000, guid: 8142e938f886748fb9b26a5c5bf275e2, type: 3}
+  nextScene: 
 --- !u!4 &1758931500
 Transform:
   m_ObjectHideFlags: 0
@@ -5047,8 +5048,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1345673465}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
-        m_MethodName: GoToScene
-        m_Mode: 5
+        m_MethodName: SaveLevel
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
