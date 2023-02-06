@@ -5,7 +5,7 @@ using UnityEngine;
 public static class Utils
 {
     // Start is called before the first frame update
-    public static void SaveModel(string level, string owned)
+    private static Dictionary<string, SavedLevel> LoadFromPlayerPrefs()
     {
         string savedLevels = PlayerPrefs.GetString(Constant.PLAYER_PREFS_CATCH_TIME);
         Dictionary<string, SavedLevel> levels = new Dictionary<string, SavedLevel>();
@@ -23,6 +23,28 @@ public static class Utils
                 );
             }
         }
+        return levels;
+    }
+
+    private static void SaveToPlayerPrefs(Dictionary<string, SavedLevel> levels)
+    {
+        string serializedLevels = "";
+        foreach (string key in levels.Keys)
+        {
+            serializedLevels +=
+                key
+                + Constant.PLAYER_PREFS_SEPERATOR
+                + levels[key].catchedTime
+                + Constant.PLAYER_PREFS_SEPERATOR
+                + levels[key].catched
+                + Constant.PLAYER_PREFS_SEPERATOR;
+        }
+        PlayerPrefs.SetString(Constant.PLAYER_PREFS_CATCH_TIME, serializedLevels);
+    }
+
+    public static void SaveModel(string level, string owned)
+    {
+        Dictionary<string, SavedLevel> levels = LoadFromPlayerPrefs();
         if (levels.ContainsKey(level))
         {
             SavedLevel updatedLevel = levels[level];
@@ -36,28 +58,12 @@ public static class Utils
         {
             levels.Add(level, new SavedLevel(System.DateTime.Now.ToString(), owned));
         }
+        SaveToPlayerPrefs(levels);
+    }
 
-        string serializedLevels = "";
-        foreach (string key in levels.Keys)
-        {
-            serializedLevels +=
-                key
-                + Constant.PLAYER_PREFS_SEPERATOR
-                + levels[key].catchedTime
-                + Constant.PLAYER_PREFS_SEPERATOR
-                + levels[key].catched
-                + Constant.PLAYER_PREFS_SEPERATOR;
-        }
-        /*SavedLevels savedLevels = new SavedLevels();
-        SavedLevel savedLevel = new SavedLevel();
-        savedLevel.catched = "1";
-        savedLevel.catchedTime = System.DateTime.Now.ToString();
-
-        savedLevels.levels = new Dictionary<string, SavedLevel>();
-        savedLevels.levels.Add(level, savedLevel);
-
-        Debug.Log(savedLevels.levels);
-        Debug.Log(JsonUtility.ToJson(savedLevels));*/
-        PlayerPrefs.SetString(Constant.PLAYER_PREFS_CATCH_TIME, serializedLevels);
+    public static void ShowGhostInCarosel(Transform transform, bool status)
+    {
+        transform.Find("[Image]Cover").gameObject.SetActive(status);
+        transform.Find("[Button]Unlock").gameObject.SetActive(status);
     }
 }
