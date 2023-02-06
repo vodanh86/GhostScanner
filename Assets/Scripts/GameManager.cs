@@ -51,6 +51,9 @@ public class GameManager : MonoBehaviour
 
     private int count;
 
+    public static GameManager Instance { get; set; }
+    public bool debug = false;
+    public bool removeAds = false;
     void Awake()
     {
         Screen.sleepTimeout = SleepTimeout.NeverSleep;

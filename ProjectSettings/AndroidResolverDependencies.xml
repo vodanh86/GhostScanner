@@ -1,6 +1,17 @@
 <dependencies>
   <packages>
+    <package>androidx.recyclerview:recyclerview:1.2.1</package>
+    <package>com.applovin.mediation:bytedance-adapter:4.9.0.9.0</package>
+    <package>com.applovin.mediation:chartboost-adapter:9.2.0.0</package>
+    <package>com.applovin.mediation:facebook-adapter:[6.12.0.2]</package>
+    <package>com.applovin.mediation:google-adapter:[21.5.0.0]</package>
+    <package>com.applovin.mediation:google-ad-manager-adapter:[21.5.0.0]</package>
+    <package>com.applovin.mediation:ironsource-adapter:7.2.7.0.0</package>
+    <package>com.applovin.mediation:mintegral-adapter:16.3.51.2</package>
+    <package>com.applovin.mediation:mytarget-adapter:5.16.3.1</package>
+    <package>com.applovin.mediation:unityads-adapter:4.5.0.2</package>
     <package>com.applovin:applovin-sdk:11.7.1</package>
+    <package>com.google.android.gms:play-services-base:16.1.0</package>
     <package>com.google.android.gms:play-services-base:18.1.0</package>
     <package>com.google.firebase:firebase-analytics:21.2.0</package>
     <package>com.google.firebase:firebase-analytics-unity:10.4.0</package>
@@ -10,7 +21,6 @@
   <files>
     <file>Assets/GeneratedLocalRepo/Firebase/m2repository/com/google/firebase/firebase-analytics-unity/10.4.0/firebase-analytics-unity-10.4.0.aar</file>
     <file>Assets/GeneratedLocalRepo/Firebase/m2repository/com/google/firebase/firebase-analytics-unity/10.4.0/firebase-analytics-unity-10.4.0.pom</file>
-    <file>Assets/GeneratedLocalRepo/Firebase/m2repository/com/google/firebase/firebase-app-unity/10.4.0/firebase-app-unity-10.4.0.aar</file>
     <file>Assets/GeneratedLocalRepo/Firebase/m2repository/com/google/firebase/firebase-app-unity/10.4.0/firebase-app-unity-10.4.0.pom</file>
   </files>
   <settings>

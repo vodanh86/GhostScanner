@@ -16,16 +16,16 @@ public class AdEnums
 
 public class AdManager : Singleton<AdManager>
 {
-    string bannerAdUnitId = "0a76da34d0272d2c";
-    string rewardVideoAdUnitID = "a8140d313c516fd2";
-    string interstitialUnitId = "684330c7ef8835e6";
+    string bannerAdUnitId = "2e43931cbe17b960";
+    string rewardVideoAdUnitID = "c1fd6c4fafd252dc";
+    string interstitialUnitId = "4950b5f5391e79cc";
     private int stepLoadAds = 0;
     Action OnEarnRewardAction = null;
 
     public override void Start()
     {
         InitializeBannerAds();
-      // stepLoadAds = 1;
+        // stepLoadAds = 1;
         //InitializeInterstitialAds();
     }
 
@@ -83,7 +83,7 @@ public class AdManager : Singleton<AdManager>
 
         AppOpenManager.Ins.ShowAdIfReady();
     }
-    
+
     public void InitializeBannerAds()
     {
         // You may call the utility method MaxSdkUtils.isTablet() to help with view sizing adjustments
@@ -101,11 +101,11 @@ public class AdManager : Singleton<AdManager>
 
     private void OnBannerAdLoadedEvent(string adUnitId, MaxSdkBase.AdInfo adInfo)
     {
-        //if (!GameManager.Instance.removeAds)
-        //{
-        //    MaxSdk.ShowBanner(bannerAdUnitId);
-        //}
-        if (stepLoadAds==0)
+        if (!GameManager.Instance.removeAds)
+        {
+            MaxSdk.ShowBanner(bannerAdUnitId);
+        }
+        if (stepLoadAds == 0)
         {
             stepLoadAds = 1;
             InitializeInterstitialAds();
@@ -200,7 +200,8 @@ public class AdManager : Singleton<AdManager>
         Debug.Log("MAX > Rewarded ad failed to load with error code: " + errorInfo.Code);
     }
 
-    private void OnRewardedAdDisplayedEvent(string adUnitId, MaxSdkBase.AdInfo adInfo) {
+    private void OnRewardedAdDisplayedEvent(string adUnitId, MaxSdkBase.AdInfo adInfo)
+    {
         //AppOpenAdManager.ResumeFromAds = false;
         if (OnEarnRewardAction != null)
         {
@@ -226,7 +227,7 @@ public class AdManager : Singleton<AdManager>
     private void OnRewardedAdReceivedRewardEvent(string adUnitId, MaxSdk.Reward reward, MaxSdkBase.AdInfo adInfo)
     {
         // The rewarded ad displayed and the user should receive the reward.
-        
+
     }
 
     private void OnRewardedAdRevenuePaidEvent(string adUnitId, MaxSdkBase.AdInfo adInfo)
@@ -235,18 +236,17 @@ public class AdManager : Singleton<AdManager>
     }
     public bool ShowVideoAds(string _placement, Action rewardAction)
     {
-        //if (GameManager.Instance.debug)
-        if(true)
+        if (GameManager.Instance.debug)
         {
-           
+
             rewardAction.Invoke();
-            return true; 
+            return true;
         }
         else
         {
             if (MaxSdk.IsRewardedAdReady(rewardVideoAdUnitID))
             {
-                
+
                 //CheckFrank
                 //AppOpenAdManager.ResumeFromAds = true;
                 OnEarnRewardAction = rewardAction;
@@ -284,7 +284,7 @@ public class AdManager : Singleton<AdManager>
                 return false;
             }
         }
-        
+
     }
     #endregion
 
@@ -319,7 +319,7 @@ public class AdManager : Singleton<AdManager>
 
         // Reset retry attempt
         retryAttemptInter = 0;
-        if (stepLoadAds==1)
+        if (stepLoadAds == 1)
         {
             stepLoadAds = 2;
             InitializeRewardedAds();
@@ -337,8 +337,9 @@ public class AdManager : Singleton<AdManager>
         Invoke("LoadInterstitial", (float)retryDelay);
     }
 
-    private void OnInterstitialDisplayedEvent(string adUnitId, MaxSdkBase.AdInfo adInfo) {
-       //AppOpenAdManager.ResumeFromAds = false;
+    private void OnInterstitialDisplayedEvent(string adUnitId, MaxSdkBase.AdInfo adInfo)
+    {
+        //AppOpenAdManager.ResumeFromAds = false;
     }
 
     private void OnInterstitialAdFailedToDisplayEvent(string adUnitId, MaxSdkBase.ErrorInfo errorInfo, MaxSdkBase.AdInfo adInfo)
@@ -358,10 +359,10 @@ public class AdManager : Singleton<AdManager>
 
     public void showInterstitialAds(string _placement)
     {
-        //if (GameManager.Instance.removeAds||GameManager.Instance.debug)
-        //{
-        //    return;
-        //}
+        if (GameManager.Instance.removeAds || GameManager.Instance.debug)
+        {
+            return;
+        }
         if (MaxSdk.IsInterstitialReady(interstitialUnitId))
         {
             //AppOpenAdManager.ResumeFromAds = true;
