@@ -11,6 +11,7 @@ public class Level
     public string image;
     public string description;
     public string sex;
+    public int energy;
 }
 
 [System.Serializable]

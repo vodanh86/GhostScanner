@@ -42,7 +42,7 @@ public class CollectionScene : MonoBehaviour
                 Transform rawImage = ghost.transform.Find("[Image]GhostImage");
                 string ghostDescription =
                     "Catched Time: " + ghosts[i + 1] + "\n" + levelInfor.description + "\n";
-                if (ghosts[i + 2] == "1" && false)
+                if (ghosts[i + 2] == "1")
                 {
                     Utils.ShowGhostInCarosel(ghost.transform, false);
                 }

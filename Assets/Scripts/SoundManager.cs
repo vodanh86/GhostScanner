@@ -16,6 +16,7 @@ public class SoundManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         //If an instance already exists, destroy whatever this object is to enforce the singleton.
         else if (Instance != this)
@@ -23,7 +24,6 @@ public class SoundManager : MonoBehaviour
             Destroy(gameObject);
         }
         //Set SoundManager to DontDestroyOnLoad so that it won't be destroyed when reloading our scene.
-        DontDestroyOnLoad(gameObject);
     }
 
     public void PlayMusic(AudioClip clip)
