@@ -51,11 +51,16 @@ public class MenuManager : MonoBehaviour
         SceneManager.LoadScene(Constant.COLLECTION_SCENE_NAME);
     }
 
-    public void StartScan() { 
+    public void StartScan()
+    {
         ConfigManager.Instance.startTime = Time.time;
         GoToScene(Constant.GHOST_SCANNER_SCENE_NAME);
     }
-    
+
+    public void Recharge()
+    {
+        GameObject.FindWithTag("GameController").GetComponent<GameManager>().HideEnergyCanvas();
+    }
 
     public void NextLevel()
     {

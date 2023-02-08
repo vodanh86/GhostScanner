@@ -180,7 +180,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ea9e6987118c1460e98294ac7e6807f2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5c6e724d66322417c8bfb7583018b846, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -572,7 +572,7 @@ GameObject:
   - component: {fileID: 322834689}
   - component: {fileID: 322834688}
   m_Layer: 5
-  m_Name: '[Button]ViewCollection'
+  m_Name: '[Button]Recharge'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -644,7 +644,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1345673465}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
-        m_MethodName: SaveLevel
+        m_MethodName: Recharge
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2040,11 +2040,14 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 509a87eb1e2264aada2371f01a3c4fdd, type: 3}
   - {fileID: 8300000, guid: 26d2be716146b4dd8afb6713d27073d6, type: 3}
   - {fileID: 8300000, guid: e041d2e4b36ce4bf396c0188ecc48aa3, type: 3}
+  - {fileID: 8300000, guid: 1ca4698c70afd4fe6b348f5dea2b7491, type: 3}
   ghost: {fileID: 423789210}
   foundTime: 2
   flashImage: {fileID: 1658440903}
   textMessage: {fileID: 1439949169}
   canvasResult: {fileID: 1760776868}
+  canvasEnergyWarning: {fileID: 1321730889}
+  energyBar: {fileID: 1221536012}
 --- !u!4 &720079308
 Transform:
   m_ObjectHideFlags: 0
@@ -2333,7 +2336,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 757b95e9237af468f87b0e8a8cd041c7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e2b008f35315e4d42a3ae0da1a9c6c4e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2757,7 +2760,6 @@ GameObject:
   - component: {fileID: 983995360}
   - component: {fileID: 983995359}
   - component: {fileID: 983995358}
-  - component: {fileID: 983995357}
   - component: {fileID: 983995356}
   m_Layer: 5
   m_Name: '[Text]GhostContent'
@@ -2881,20 +2883,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &983995357
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 983995354}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad7deee3c9f994f15bf315fea7b8e09f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  delay: 0.1
-  typingSound: {fileID: 0}
 --- !u!114 &983995358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3312,6 +3300,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   energy: 40
+  gameManager: {fileID: 720079306}
+  fuelSpeed: 6
+  audioClip: {fileID: 8300000, guid: 1ca4698c70afd4fe6b348f5dea2b7491, type: 3}
 --- !u!1 &1258295890
 GameObject:
   m_ObjectHideFlags: 0
@@ -3565,7 +3556,7 @@ GameObject:
   - component: {fileID: 1321730890}
   m_Layer: 5
   m_Name: '[Canvas]Energy'
-  m_TagString: Untagged
+  m_TagString: CanvasEnergy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4591,7 +4582,7 @@ GameObject:
   - component: {fileID: 1524991925}
   - component: {fileID: 1524991924}
   m_Layer: 5
-  m_Name: '[Text]Congratulation'
+  m_Name: '[Text]Warning'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4636,7 +4627,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Congratulation!
+  m_text: Warning
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -5484,10 +5475,9 @@ GameObject:
   - component: {fileID: 1789668650}
   - component: {fileID: 1789668649}
   - component: {fileID: 1789668648}
-  - component: {fileID: 1789668647}
   - component: {fileID: 1789668646}
   m_Layer: 5
-  m_Name: '[Text]GhostContent'
+  m_Name: '[Text]Description'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5608,20 +5598,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1789668647
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1789668644}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad7deee3c9f994f15bf315fea7b8e09f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  delay: 0.1
-  typingSound: {fileID: 0}
 --- !u!114 &1789668648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5656,7 +5632,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: Your scanner is out of energy! Click the button to recharge the scanner!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -5752,7 +5728,7 @@ GameObject:
   - component: {fileID: 1805720716}
   - component: {fileID: 1805720715}
   m_Layer: 5
-  m_Name: '[Button]NextLevel'
+  m_Name: '[Button]Reload'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5791,7 +5767,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: facefd81beba84fa6bd0ea204a7ecc9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delayTime: 15
+  delayTime: 25
   txtDelayTime: {fileID: 2037905718}
 --- !u!114 &1805720716
 MonoBehaviour:
@@ -5839,14 +5815,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1345673465}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
-        m_MethodName: NextLevel
+        m_MethodName: StartScan
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Main
+          m_StringArgument: GhostScanner
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1805720717

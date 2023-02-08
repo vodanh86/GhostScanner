@@ -42,6 +42,12 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private GameObject canvasResult;
+
+    [SerializeField]
+    private GameObject canvasEnergyWarning;
+
+    [SerializeField]
+    private GameObject energyBar;
     private GameObject ghostModel;
     private RadarController radarController;
     private ScanState scanState;
@@ -96,7 +102,7 @@ public class GameManager : MonoBehaviour
             );
             StartCoroutine(HideGhost());
 
-            if (count >= Random.Range(foundTime, foundTime * 2))
+            if (count >= Random.Range(foundTime, foundTime * 4))
             {
                 OnGhostFound?.Invoke();
             }
@@ -114,15 +120,24 @@ public class GameManager : MonoBehaviour
         scream.loop = false;
         scream.Stop();
 
-        textMessage.GetComponent<TypeWriterEffect>().SetFullText("Signal Lost");
-        textMessage.GetComponent<TypeWriterEffect>().StartShowTextCoroutine(true);
+        if (scanState.GetState() != (int)ScanState.State.WARNING)
+        {
+            Debug.Log("state: " + scanState.GetState().ToString());
+            textMessage.GetComponent<TypeWriterEffect>().SetFullText("Signal Lost");
+            textMessage.GetComponent<TypeWriterEffect>().StartShowTextCoroutine(true);
+        }
 
-        scanState.SetState((int)ScanState.State.SCANNING);
+        StartCoroutine(ChangeState());
         mainCamera.SetActive(true);
         filterCamera.SetActive(false);
 
         ResetScaner();
-        //StartCoroutine(EndJump());
+    }
+
+    IEnumerator ChangeState()
+    {
+        yield return new WaitForSeconds(5.03f);
+        scanState.SetState((int)ScanState.State.SCANNING);
     }
 
     void ShowGhost()
@@ -174,8 +189,53 @@ public class GameManager : MonoBehaviour
         OnGhostHide?.Invoke();
     }
 
-    void SaveCurrentTime()
-    {/*
+    public void HideEnergyCanvas()
+    {
+        canvasEnergyWarning.SetActive(false);
+        Time.timeScale = 1;
+        energyBar.GetComponent<EnergyBar>().Charge();
+        scanState.SetState((int)ScanState.State.SCANNING);
+    }
+
+    public void ShowEnergyWarning()
+    {
+        if (
+            scanState.GetState() == (int)ScanState.State.SCANNING
+            && textMessage.GetComponent<TMP_Text>().text == ""
+        )
+        {
+            scanState.SetState((int)ScanState.State.WARNING);
+            canvasEnergyWarning.SetActive(true);
+            Time.timeScale = 0;
+            Transform warningContent = canvasEnergyWarning.transform.Find("[Text]Description");
+            warningContent
+                .GetComponent<TypeWriterEffect>()
+                .SetFullText(warningContent.GetComponent<TMP_Text>().text);
+            warningContent.GetComponent<TypeWriterEffect>().StartShowTextCoroutine(false);
+            canvasEnergyWarning.transform
+                .Find("[Button]Reload")
+                .GetComponent<EnableButton>()
+                .StartCountdown();
+        }
+        /* SaveCurrentTime();
+ 
+         // show ghost description
+         Transform ghostContent = canvasResult.transform.Find("[Text]GhostContent");
+         Transform btnNextLevel = canvasResult.transform.Find("[Button]NextLevel");
+         string levelContent =
+             "Level "
+             + ConfigManager.Instance.GetLevel().name
+             + "\n"
+             + "You found: "
+             + ConfigManager.Instance.GetLevel().ghostName;
+         ;
+         ghostContent.GetComponent<TMP_Text>().text = levelContent;
+         ghostContent.GetComponent<TypeWriterEffect>().SetFullText(levelContent);
+         ghostContent.GetComponent<TypeWriterEffect>().StartShowTextCoroutine(false);
+         btnNextLevel.GetComponent<EnableButton>().StartCountdown();*/
+    }
+
+    void SaveCurrentTime() { /*
         string lastSavedGhosts = PlayerPrefs.GetString(Constant.PLAYER_PREFS_CATCH_TIME);
         lastSavedGhosts +=
             ConfigManager.Instance.GetCurrentLevel()
@@ -183,6 +243,11 @@ public class GameManager : MonoBehaviour
             + System.DateTime.Now
             + Constant.PLAYER_PREFS_SEPERATOR;
         PlayerPrefs.SetString(Constant.PLAYER_PREFS_CATCH_TIME, lastSavedGhosts);*/
+    }
+
+    public int GetState()
+    {
+        return scanState.GetState();
     }
 
     void ResetScaner()
