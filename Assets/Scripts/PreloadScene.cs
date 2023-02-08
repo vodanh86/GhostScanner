@@ -41,6 +41,7 @@ public class PreloadScene : MonoBehaviour
 
     private void Start()
     {
+        AdManager.Ins.ShowVideoAds("CallWhenStart ",LoadSceneNew);
         currentTime = 0f;
         //Invoke("LoadSceneNew",1f);
     }

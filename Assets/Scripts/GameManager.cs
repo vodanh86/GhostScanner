@@ -78,6 +78,13 @@ public class GameManager : MonoBehaviour
         }
         OnGhostFound += ShowGhost;
         ResetScaner();
+        /////////Example of call Ads in Game
+        // AdManager.Ins.showInterstitialAds("CallAtEndGame");
+        // AdManager.Ins.ShowVideoAds("CallWhenWatchVideo", RewardOfVideoAds);
+    }
+    public void RewardOfVideoAds()
+    {
+
     }
 
     // Update is called once per frame

@@ -16,9 +16,9 @@ public class AdEnums
 
 public class AdManager : Singleton<AdManager>
 {
-    string bannerAdUnitId = "2e43931cbe17b960";
-    string rewardVideoAdUnitID = "c1fd6c4fafd252dc";
-    string interstitialUnitId = "4950b5f5391e79cc";
+    string bannerAdUnitId = "0a76da34d0272d2c";
+    string rewardVideoAdUnitID = "a8140d313c516fd2";
+    string interstitialUnitId = "684330c7ef8835e6";
     private int stepLoadAds = 0;
     Action OnEarnRewardAction = null;
 
@@ -29,45 +29,45 @@ public class AdManager : Singleton<AdManager>
         //InitializeInterstitialAds();
     }
 
-    //MaxMediationController MaxMediation;
-    //public bool IsInterstitialLoaded(int id = 1)
-    //{
+    MaxLoading MaxMediation;
+    public bool IsInterstitialLoaded(int id = 1)
+    {
 
-    //    return true;
-    //}
-    //public bool ShowInterstitial(string _placement, int id = 1)
-    //{
-    //    if (!IsInterstitialLoaded(id))
-    //    {
-    //        return false;
-    //    }
-    //    switch (id)
-    //    {
-    //        case (int)AdEnums.ShowType.NO_AD:
-    //            return true;
-    //        case (int)AdEnums.ShowType.INTERSTITIAL:
-    //            AppOpenAdManager.ResumeFromAds = true;
-    //            MaxMediation.ShowInterstitial(_placement);
-    //            return true;
-    //        case (int)AdEnums.ShowType.VIDEO_REWARD:
-    //            AppOpenAdManager.ResumeFromAds = true;
-    //            MaxMediation.ShowInterstitial(_placement);
-    //            return true;
-    //        default:
-    //            return false;
-    //    }
+        return true;
+    }
+    public bool ShowInterstitial(string _placement, int id = 1)
+    {
+        if (!IsInterstitialLoaded(id))
+        {
+            return false;
+        }
+        switch (id)
+        {
+            case (int)AdEnums.ShowType.NO_AD:
+                return true;
+            case (int)AdEnums.ShowType.INTERSTITIAL:
+                AppOpenAdManager.ResumeFromAds = true;
+               // MaxMediation.ShowInterstitial(_placement);
+                return true;
+            case (int)AdEnums.ShowType.VIDEO_REWARD:
+                AppOpenAdManager.ResumeFromAds = true;
+                //MaxMediation.ShowInterstitial(_placement);
+                return true;
+            default:
+                return false;
+        }
 
-    //}
-    //private void OnInterstitialDismissedEvent(string adUnitId, MaxSdkBase.AdInfo adInfo)
-    //{
-    //    LoadInterstitial();
-    //    AppOpenAdManager.ResumeFromAds = false;
-    //}
-    //private void OnRewardedDismissedEvent(string adUnitId, MaxSdkBase.AdInfo adInfo)
-    //{
-    //    LoadRewardedAd();
-    //    AppOpenAdManager.ResumeFromAds = false;
-    //}
+    }
+    private void OnInterstitialDismissedEvent(string adUnitId, MaxSdkBase.AdInfo adInfo)
+    {
+        LoadInterstitial();
+        AppOpenAdManager.ResumeFromAds = false;
+    }
+    private void OnRewardedDismissedEvent(string adUnitId, MaxSdkBase.AdInfo adInfo)
+    {
+        LoadRewardedAd();
+        AppOpenAdManager.ResumeFromAds = false;
+    }
 
     //private void LoadRewardedAdsOLD()
     //{
@@ -81,7 +81,7 @@ public class AdManager : Singleton<AdManager>
     {
         Debug.Log("Call AdsOpen ShowAdIfReady in Admanager");
 
-        AppOpenManager.Ins.ShowAdIfReady();
+        //AppOpenManager.Ins.ShowAdIfReady();
     }
 
     public void InitializeBannerAds()
@@ -101,7 +101,7 @@ public class AdManager : Singleton<AdManager>
 
     private void OnBannerAdLoadedEvent(string adUnitId, MaxSdkBase.AdInfo adInfo)
     {
-        if (!GameManager.Instance.removeAds)
+        //if (!GameManager.Instance.removeAds)
         {
             MaxSdk.ShowBanner(bannerAdUnitId);
         }
@@ -198,6 +198,7 @@ public class AdManager : Singleton<AdManager>
         //double retryDelay = 2* Math.Min(6, retryAttempt);
         Invoke("LoadRewardedAd", (float)retryDelay);
         Debug.Log("MAX > Rewarded ad failed to load with error code: " + errorInfo.Code);
+
     }
 
     private void OnRewardedAdDisplayedEvent(string adUnitId, MaxSdkBase.AdInfo adInfo)
@@ -213,6 +214,7 @@ public class AdManager : Singleton<AdManager>
     {
         // Rewarded ad failed to display. AppLovin recommends that you load the next ad.
         LoadRewardedAd();
+        
     }
 
     private void OnRewardedAdClickedEvent(string adUnitId, MaxSdkBase.AdInfo adInfo) { }
@@ -236,13 +238,13 @@ public class AdManager : Singleton<AdManager>
     }
     public bool ShowVideoAds(string _placement, Action rewardAction)
     {
-        if (GameManager.Instance.debug)
-        {
+        //if (GameManager.Instance.debug)
+        //{
 
-            rewardAction.Invoke();
-            return true;
-        }
-        else
+        //    rewardAction.Invoke();
+        //    return true;
+        //}
+        //else
         {
             if (MaxSdk.IsRewardedAdReady(rewardVideoAdUnitID))
             {
@@ -359,10 +361,10 @@ public class AdManager : Singleton<AdManager>
 
     public void showInterstitialAds(string _placement)
     {
-        if (GameManager.Instance.removeAds || GameManager.Instance.debug)
-        {
-            return;
-        }
+        //if (GameManager.Instance.removeAds || GameManager.Instance.debug)
+        //{
+        //    return;
+        //}
         if (MaxSdk.IsInterstitialReady(interstitialUnitId))
         {
             //AppOpenAdManager.ResumeFromAds = true;
