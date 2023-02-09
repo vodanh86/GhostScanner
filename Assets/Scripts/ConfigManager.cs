@@ -7,12 +7,16 @@ public class ConfigManager : MonoBehaviour
     public static ConfigManager Instance = null;
 
     public TextAsset levelConfig;
+    public TextAsset ghostConfig;
 
     public string nextScene;
 
     private Dictionary<int, Level> levelsInJson = new Dictionary<int, Level>();
+    private Dictionary<int, Ghost> ghostsInJson = new Dictionary<int, Ghost>();
 
     private int currentLevel;
+
+    private int currentGhost;
 
     public float startTime = 0;
 
@@ -34,13 +38,22 @@ public class ConfigManager : MonoBehaviour
     private void LoadAllConfigs()
     {
         Levels levels = JsonUtility.FromJson<Levels>(levelConfig.text);
+        Ghosts ghosts = JsonUtility.FromJson<Ghosts>(ghostConfig.text);
+
         for (int i = 0; i < levels.levels.Length; i++)
         {
             levelsInJson.Add(i + 1, levels.levels[i]);
         }
+        for (int i = 0; i < ghosts.ghosts.Length; i++)
+        {
+            ghostsInJson.Add(i + 1, ghosts.ghosts[i]);
+        }
 
         int level = PlayerPrefs.GetInt("level");
         currentLevel = level > 0 ? level : 1;
+
+        currentGhost = PlayerPrefs.GetInt("ghost");
+        currentGhost = currentGhost > 0 ? currentGhost : 1;
     }
 
     public void NextLevel()
@@ -48,7 +61,16 @@ public class ConfigManager : MonoBehaviour
         currentLevel++;
         currentLevel = currentLevel >= levelsInJson.Count ? 1 : currentLevel;
 
+        NextGhost();
         PlayerPrefs.SetInt("level", currentLevel);
+    }
+
+    public void NextGhost()
+    {
+        currentGhost++;
+        currentGhost = currentGhost >= ghostsInJson.Count ? 1 : currentGhost;
+
+        PlayerPrefs.SetInt("ghost", currentGhost);
     }
 
     public int GetCurrentLevel()
@@ -61,8 +83,18 @@ public class ConfigManager : MonoBehaviour
         return levelsInJson[level];
     }
 
+    public Ghost GetGhostInfo(int ghost)
+    {
+        return ghostsInJson[ghost];
+    }
+
     public Level GetLevel()
     {
         return levelsInJson[currentLevel];
+    }
+
+    public Ghost GetCurrentGhost()
+    {
+        return ghostsInJson[currentGhost];
     }
 }

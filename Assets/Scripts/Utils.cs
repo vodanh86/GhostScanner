@@ -61,9 +61,9 @@ public static class Utils
         SaveToPlayerPrefs(levels);
     }
 
-    public static void ShowGhostInCarosel(Transform transform, bool status)
+    public static void ShowGhostInCarosel(Transform transform, bool coverStatus, bool buttonStatus)
     {
-        transform.Find("[Image]Cover").gameObject.SetActive(status);
-        transform.Find("[Button]Unlock").gameObject.SetActive(status);
+        transform.Find("[Image]Cover").gameObject.SetActive(coverStatus);
+        transform.Find("[Button]Unlock").gameObject.SetActive(buttonStatus);
     }
 }

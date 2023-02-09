@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
         scanState = new ScanState();
         scanState.SetState((int)ScanState.State.SCANNING);
         radarController = GameObject.FindWithTag("Radar").GetComponent<RadarController>();
-        ghostModel = ghost.transform.Find(ConfigManager.Instance.GetLevel().name).gameObject;
+        ghostModel = ghost.transform.Find(ConfigManager.Instance.GetCurrentGhost().name).gameObject;
         if (ghostModel == null)
         {
             ghostModel = ghost.transform.Find(Constant.DEFAUL_GHOST_MODEL).gameObject;
@@ -102,7 +102,7 @@ public class GameManager : MonoBehaviour
             );
             StartCoroutine(HideGhost());
 
-            if (count >= Random.Range(foundTime, foundTime * 4))
+            if (count >= Random.Range(foundTime, foundTime * 2))
             {
                 OnGhostFound?.Invoke();
             }
@@ -122,7 +122,6 @@ public class GameManager : MonoBehaviour
 
         if (scanState.GetState() != (int)ScanState.State.WARNING)
         {
-            Debug.Log("state: " + scanState.GetState().ToString());
             textMessage.GetComponent<TypeWriterEffect>().SetFullText("Signal Lost");
             textMessage.GetComponent<TypeWriterEffect>().StartShowTextCoroutine(true);
         }
@@ -180,7 +179,7 @@ public class GameManager : MonoBehaviour
             + ConfigManager.Instance.GetLevel().name
             + "\n"
             + "You found: "
-            + ConfigManager.Instance.GetLevel().ghostName;
+            + ConfigManager.Instance.GetCurrentGhost().ghostName;
         ;
         ghostContent.GetComponent<TMP_Text>().text = levelContent;
         ghostContent.GetComponent<TypeWriterEffect>().SetFullText(levelContent);
