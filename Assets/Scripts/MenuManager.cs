@@ -45,7 +45,7 @@ public class MenuManager : MonoBehaviour
     public void SaveLevel()
     {
         clickAudio.Play();
-        Utils.SaveModel(ConfigManager.Instance.GetLevel().name, Constant.SAVED_MODEL);
+        Utils.SaveModel(ConfigManager.Instance.GetCurrentGhost().name, Constant.SAVED_MODEL);
         ConfigManager.Instance.NextLevel();
         ConfigManager.Instance.nextScene = Constant.MAIN_SCENE_NAME;
         SceneManager.LoadScene(Constant.COLLECTION_SCENE_NAME);
@@ -65,7 +65,7 @@ public class MenuManager : MonoBehaviour
     public void NextLevel()
     {
         clickAudio.Play();
-        Utils.SaveModel(ConfigManager.Instance.GetLevel().name, Constant.NOT_SAVED_MODEL);
+        Utils.SaveModel(ConfigManager.Instance.GetCurrentGhost().name, Constant.NOT_SAVED_MODEL);
         ConfigManager.Instance.NextLevel();
         SceneManager.LoadScene(Constant.MAIN_SCENE_NAME);
     }

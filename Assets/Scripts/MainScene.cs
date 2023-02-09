@@ -12,8 +12,7 @@ public class MainScene : MonoBehaviour
             "Level "
             + ConfigManager.Instance.GetLevel().name
             + "\n"
-            + "Ghost name: "
-            + ConfigManager.Instance.GetLevel().ghostName;
+            + ConfigManager.Instance.GetLevel().levelName;
         ;
         transform.Find("Level").GetComponent<TMP_Text>().text = levelContent;
         transform.Find("Level").GetComponent<TypeWriterEffect>().SetFullText(levelContent);

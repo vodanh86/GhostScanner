@@ -13,10 +13,12 @@ public class CollectionScene : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        bool notEmpty = true;
         Time.timeScale = 1;
         string lastSavedGhosts = PlayerPrefs.GetString(Constant.PLAYER_PREFS_CATCH_TIME);
         if (lastSavedGhosts == null || lastSavedGhosts == "")
         {
+            notEmpty = false;
             lastSavedGhosts =
                 "1"
                 + Constant.PLAYER_PREFS_SEPERATOR
@@ -36,18 +38,19 @@ public class CollectionScene : MonoBehaviour
             {
                 ghostKey.Add(ghosts[i], ghosts[i + 1]);
                 GameObject ghost = Object.Instantiate(GhostInfor, Content.transform);
-                Level levelInfor = ConfigManager.Instance.GetLevelInfo(int.Parse(ghosts[i]));
+                Ghost ghostInfor = ConfigManager.Instance.GetGhostInfo(int.Parse(ghosts[i]));
 
-                myTexture = Resources.Load("Images/" + levelInfor.image) as Texture2D;
+                myTexture = Resources.Load("Images/" + ghostInfor.image) as Texture2D;
                 Transform rawImage = ghost.transform.Find("[Image]GhostImage");
                 string ghostDescription =
-                    "Catched Time: " + ghosts[i + 1] + "\n" + levelInfor.description + "\n";
+                    "Catched Time: " + ghosts[i + 1] + "\n" + ghostInfor.description + "\n";
                 if (ghosts[i + 2] == "1")
                 {
-                    Utils.ShowGhostInCarosel(ghost.transform, false);
+                    Utils.ShowGhostInCarosel(ghost.transform, false, false);
                 }
                 else
                 {
+                    Utils.ShowGhostInCarosel(ghost.transform, true, notEmpty);
                     Button button = ghost.transform
                         .Find("[Button]Unlock")
                         .GetComponentInChildren<Button>();
@@ -57,14 +60,12 @@ public class CollectionScene : MonoBehaviour
                     {
                         SoundManager.Instance.PlayClick();
                         Utils.SaveModel(tmpLevel, Constant.SAVED_MODEL);
-                        Utils.ShowGhostInCarosel(transform, false);
-                        Debug.Log(tmpLevel);
-                        Debug.Log(transform);
+                        Utils.ShowGhostInCarosel(transform, false, false);
                     });
                 }
                 rawImage.GetComponent<RawImage>().texture = myTexture;
                 ghost.transform.Find("[Text]Name").GetComponentInChildren<TMP_Text>().text =
-                    levelInfor.ghostName;
+                    ghostInfor.ghostName;
                 ghost.transform.Find("[Text]Description").GetComponentInChildren<TMP_Text>().text =
                     ghostDescription;
             }

@@ -330,6 +330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelConfig: {fileID: 4900000, guid: 8142e938f886748fb9b26a5c5bf275e2, type: 3}
+  ghostConfig: {fileID: 4900000, guid: 090bc3bb31bb44da791dc01f355e112f, type: 3}
   nextScene: 
   startTime: 0
 --- !u!4 &461556435

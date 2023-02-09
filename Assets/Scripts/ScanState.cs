@@ -20,7 +20,6 @@ public class ScanState
 
     public void SetState(int state)
     {
-        Debug.Log(state);
         this.state = state;
     }
 }
