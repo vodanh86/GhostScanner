@@ -24,12 +24,15 @@ public class MainScene : MonoBehaviour
 
     public void CallInter()
     {
-        AdManager.Ins.showInterstitialAds("CallAtEndGame");
+        if (AdManager.Ins.CheckHasRewardAds(true))
+            AdManager.Ins.showInterstitialAds("CallAtEndGame");
+        //AdManager.Ins.CheckHasRewardAds();
         // AdManager.Ins.ShowVideoAds("CallWhenWatchVideo", RewardOfVideoAds);
     }
     public void CallVideoAds()
     {
         //AdManager.Ins.showInterstitialAds("CallAtEndGame");
+        if(AdManager.Ins.CheckHasRewardAds(true))
          AdManager.Ins.ShowVideoAds("CallWhenWatchVideo", RewardOfVideoAds);
     }
     private void RewardOfVideoAds()

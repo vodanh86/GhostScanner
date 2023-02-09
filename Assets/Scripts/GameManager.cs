@@ -68,6 +68,12 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if(AdManager.Ins.CheckHasRewardAds(true))
+        {
+            AdManager.Ins.showInterstitialAds("CallAtEndGame");
+        }
+
+       
         count = 0;
         scanState = new ScanState();
         scanState.SetState((int)ScanState.State.SCANNING);
