@@ -6,6 +6,7 @@ public class ScanState
     {
         IDLE,
         SCANNING,
+        WARNING,
         FOUND,
         DONE
     }
@@ -19,6 +20,7 @@ public class ScanState
 
     public void SetState(int state)
     {
+        Debug.Log(state);
         this.state = state;
     }
 }

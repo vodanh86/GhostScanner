@@ -5,6 +5,7 @@
       "ghostName": "Ghost Lily Tomlin",
       "image": "1",
       "sex": "female",
+      "energy": 100,
       "description": "Ghost Lily Tomlin tries to make Mulder and Scully kill each other so she can hang out with Gillian Anderson in the afterlife, but she really only ends up pushing those two crazy kids closer together at Christmas time. Nice try, though, Lils. Can’t blame a girl for trying."
     },
     {
@@ -12,6 +13,7 @@
       "ghostName": "The Ghost Librarian",
       "image": "2",
       "sex": "female",
+      "energy": 90,
       "description": "I’d also probably confuse heaven for a library if I were dead and could walk through walls. She’s pretty chill in the movies, but in the Library level of the video game she’s a truly superior Big Bad."
     },
     {
@@ -19,6 +21,7 @@
       "ghostName": "White Clown",
       "image": "3",
       "sex": "male",
+      "energy": 80,
       "description": " The Otis family moves into a castle that's haunted by a dead nobleman, who, much to his growing annoyance, cannot scare them no matter how hard he tries, and instead, it's the family who ends up spooking the ghost."
     },
     {
@@ -26,6 +29,7 @@
       "ghostName": "Moaning Myrtle",
       "image": "4",
       "sex": "female",
+      "energy": 70,
       "description": "Myrtle was one of the biggest creeps in the whole Harry Potter series, but I guess Harry would have died in the second challenge in the Triwizard Tournament if she hadn’t been stalking him and Cedric."
     },
     {
@@ -33,6 +37,7 @@
       "ghostName": "Ghost Juliana Hatfield",
       "image": "5",
       "sex": "female",
+      "energy": 60,
       "description": "The moral of this story is when a homeless ghost shows up strumming her guitar and reminding you that anyone can end up on the streets, you gotta give her your new Doc Martens and be a better friend to Ricky."
     }
   ]

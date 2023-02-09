@@ -18,14 +18,19 @@ public class CollectionScene : MonoBehaviour
         if (lastSavedGhosts == null || lastSavedGhosts == "")
         {
             lastSavedGhosts =
-                "1" + Constant.PLAYER_PREFS_SEPERATOR + "XXXXXX" + Constant.PLAYER_PREFS_SEPERATOR;
+                "1"
+                + Constant.PLAYER_PREFS_SEPERATOR
+                + "XXXXXX"
+                + Constant.PLAYER_PREFS_SEPERATOR
+                + Constant.NOT_SAVED_MODEL
+                + Constant.PLAYER_PREFS_SEPERATOR;
         }
         string[] ghosts = lastSavedGhosts.Split(
             new string[] { Constant.PLAYER_PREFS_SEPERATOR },
             System.StringSplitOptions.None
         );
         Dictionary<string, string> ghostKey = new Dictionary<string, string>();
-        for (int i = 0; i + 1 < ghosts.Length; i += 2)
+        for (int i = 0; i + 1 < ghosts.Length; i += 3)
         {
             if (!ghostKey.ContainsKey(ghosts[i]))
             {
@@ -36,23 +41,32 @@ public class CollectionScene : MonoBehaviour
                 myTexture = Resources.Load("Images/" + levelInfor.image) as Texture2D;
                 Transform rawImage = ghost.transform.Find("[Image]GhostImage");
                 string ghostDescription =
-                    levelInfor.ghostName
-                    + "\n"
-                    + "Catched Time: "
-                    + ghosts[i + 1]
-                    + "\n"
-                    + levelInfor.description;
+                    "Catched Time: " + ghosts[i + 1] + "\n" + levelInfor.description + "\n";
+                if (ghosts[i + 2] == "1")
+                {
+                    Utils.ShowGhostInCarosel(ghost.transform, false);
+                }
+                else
+                {
+                    Button button = ghost.transform
+                        .Find("[Button]Unlock")
+                        .GetComponentInChildren<Button>();
+                    string tmpLevel = ghosts[i];
+                    Transform transform = ghost.transform;
+                    button.onClick.AddListener(() =>
+                    {
+                        SoundManager.Instance.PlayClick();
+                        Utils.SaveModel(tmpLevel, Constant.SAVED_MODEL);
+                        Utils.ShowGhostInCarosel(transform, false);
+                        Debug.Log(tmpLevel);
+                        Debug.Log(transform);
+                    });
+                }
                 rawImage.GetComponent<RawImage>().texture = myTexture;
+                ghost.transform.Find("[Text]Name").GetComponentInChildren<TMP_Text>().text =
+                    levelInfor.ghostName;
                 ghost.transform.Find("[Text]Description").GetComponentInChildren<TMP_Text>().text =
                     ghostDescription;
-                /*ghost.transform
-                    .Find("[Text]CatchTime")
-                    .GetComponentInChildren<TMP_Text>()
-                    .text = "Catched Time: " + ghosts[i + 1];
-                ghost.transform
-                    .Find("[Text]Description")
-                    .GetComponentInChildren<TMP_Text>()
-                    .text = levelInfor.ghostName;*/
             }
         }
     }

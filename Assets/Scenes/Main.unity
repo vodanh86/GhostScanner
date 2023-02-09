@@ -330,6 +330,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelConfig: {fileID: 4900000, guid: 8142e938f886748fb9b26a5c5bf275e2, type: 3}
+  nextScene: 
+  startTime: 0
 --- !u!4 &461556435
 Transform:
   m_ObjectHideFlags: 0
@@ -1244,8 +1246,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1195491893}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
-        m_MethodName: GoToScene
-        m_Mode: 5
+        m_MethodName: StartScan
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

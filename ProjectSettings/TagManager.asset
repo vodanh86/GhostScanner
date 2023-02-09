@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Radar
   - VibrationManager
+  - CanvasEnergy
   layers:
   - Default
   - TransparentFX

@@ -8,22 +8,26 @@ public class ConfigManager : MonoBehaviour
 
     public TextAsset levelConfig;
 
+    public string nextScene;
+
     private Dictionary<int, Level> levelsInJson = new Dictionary<int, Level>();
 
     private int currentLevel;
+
+    public float startTime = 0;
 
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else if (Instance != this)
         {
             Destroy(this);
         }
 
-        DontDestroyOnLoad(gameObject);
         this.LoadAllConfigs();
     }
 
