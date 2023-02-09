@@ -1,6 +1,4 @@
-using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 public class MainScene : MonoBehaviour
@@ -24,6 +22,18 @@ public class MainScene : MonoBehaviour
             "Ghost name: " + ConfigManager.Instance.GetLevel().ghostName;*/
     }
 
-    // Update is called once per frame
-    void Update() { }
+    public void CallInter()
+    {
+        AdManager.Ins.showInterstitialAds("CallAtEndGame");
+        // AdManager.Ins.ShowVideoAds("CallWhenWatchVideo", RewardOfVideoAds);
+    }
+    public void CallVideoAds()
+    {
+        //AdManager.Ins.showInterstitialAds("CallAtEndGame");
+         AdManager.Ins.ShowVideoAds("CallWhenWatchVideo", RewardOfVideoAds);
+    }
+    private void RewardOfVideoAds()
+    {
+        Debug.Log("Finish Video Ads");
+    }
 }
