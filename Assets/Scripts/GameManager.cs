@@ -120,10 +120,7 @@ public class GameManager : MonoBehaviour
         scream.loop = false;
         scream.Stop();
 
-        if (
-            scanState.GetState() != (int)ScanState.State.WARNING
-            && scanState.GetState() != (int)ScanState.State.FOUND
-        )
+        if (scanState.GetState() == (int)ScanState.State.FOUND)
         {
             textMessage.GetComponent<TypeWriterEffect>().SetFullText("Signal Lost");
             textMessage.GetComponent<TypeWriterEffect>().StartShowTextCoroutine(true);
@@ -144,6 +141,7 @@ public class GameManager : MonoBehaviour
 
     void ShowGhost()
     {
+        scanState.SetState((int)ScanState.State.DONE);
         StartCoroutine(GhostJumps());
     }
 
@@ -154,21 +152,8 @@ public class GameManager : MonoBehaviour
         flashImage.SetActive(true);
         ghostModel.SetActive(true);
         ghostModel.GetComponent<Animator>().SetInteger("action", 1);
-        /*
-        yield return new WaitForSeconds(1);
-        if (ConfigManager.Instance.GetLevel().sex == "female")
-        {
-            scream.clip = audioClips[0];
-        }
-        else
-        {
-            scream.clip = audioClips[1];
-        }
-        scream.loop = false;
-        scream.Play();*/
 
         yield return new WaitForSeconds(10.03f);
-        //ghostModel.SetActive(false);
         flashImage.SetActive(false);
         Time.timeScale = 0;
         canvasResult.SetActive(true);
