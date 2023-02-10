@@ -163,11 +163,10 @@ public class GameManager : MonoBehaviour
         Transform ghostContent = canvasResult.transform.Find("[Text]GhostContent");
         Transform btnNextLevel = canvasResult.transform.Find("[Button]NextLevel");
         string levelContent =
-            "Level "
-            + ConfigManager.Instance.GetLevel().name
+            "You found: "
+            + ConfigManager.Instance.GetCurrentGhost().ghostName
             + "\n"
-            + "You found: "
-            + ConfigManager.Instance.GetCurrentGhost().ghostName;
+            + "Click right button to continue scan more ghosts";
         ;
         ghostContent.GetComponent<TMP_Text>().text = levelContent;
         ghostContent.GetComponent<TypeWriterEffect>().SetFullText(levelContent);
@@ -181,7 +180,8 @@ public class GameManager : MonoBehaviour
         canvasEnergyWarning.SetActive(false);
         Time.timeScale = 1;
         energyBar.GetComponent<EnergyBar>().Charge();
-        scanState.SetState((int)ScanState.State.SCANNING);
+        scanState.SetState((int)ScanState.State.CHARGING);
+        StartCoroutine(ChangeState());
     }
 
     public void ShowEnergyWarning()
@@ -204,32 +204,18 @@ public class GameManager : MonoBehaviour
                 .GetComponent<EnableButton>()
                 .StartCountdown();
         }
-        /* SaveCurrentTime();
- 
-         // show ghost description
-         Transform ghostContent = canvasResult.transform.Find("[Text]GhostContent");
-         Transform btnNextLevel = canvasResult.transform.Find("[Button]NextLevel");
-         string levelContent =
-             "Level "
-             + ConfigManager.Instance.GetLevel().name
-             + "\n"
-             + "You found: "
-             + ConfigManager.Instance.GetLevel().ghostName;
-         ;
-         ghostContent.GetComponent<TMP_Text>().text = levelContent;
-         ghostContent.GetComponent<TypeWriterEffect>().SetFullText(levelContent);
-         ghostContent.GetComponent<TypeWriterEffect>().StartShowTextCoroutine(false);
-         btnNextLevel.GetComponent<EnableButton>().StartCountdown();*/
     }
 
-    void SaveCurrentTime() { /*
-        string lastSavedGhosts = PlayerPrefs.GetString(Constant.PLAYER_PREFS_CATCH_TIME);
-        lastSavedGhosts +=
-            ConfigManager.Instance.GetCurrentLevel()
-            + Constant.PLAYER_PREFS_SEPERATOR
-            + System.DateTime.Now
-            + Constant.PLAYER_PREFS_SEPERATOR;
-        PlayerPrefs.SetString(Constant.PLAYER_PREFS_CATCH_TIME, lastSavedGhosts);*/
+    void SaveCurrentTime() { }
+
+    public void ScanMore()
+    {
+        count = 0;
+        Time.timeScale = 1;
+        ghostModel.SetActive(false);
+        ghostModel = ghost.transform.Find(ConfigManager.Instance.GetCurrentGhost().name).gameObject;
+        ConfigManager.Instance.NextGhost();
+        canvasResult.SetActive(false);
     }
 
     public int GetState()

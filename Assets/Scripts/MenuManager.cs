@@ -65,6 +65,11 @@ public class MenuManager : MonoBehaviour
         GameObject.FindWithTag("GameController").GetComponent<GameManager>().HideEnergyCanvas();
     }
 
+    public void ScanMore()
+    {
+        GameObject.FindWithTag("GameController").GetComponent<GameManager>().ScanMore();
+    }
+
     public void NextLevel()
     {
         clickAudio.Play();
