@@ -5,18 +5,40 @@ using UnityEngine;
 public class AnimationAudio : MonoBehaviour
 {
     // Start is called before the first frame update
-    AudioSource audio;
+    [SerializeField]
+    private AudioClip[] audioClips;
+    private AudioSource audioSource;
 
     void Start()
     {
-        audio = GetComponent<AudioSource>();
+        audioSource = new GameObject("[Model]AudioSource").AddComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update() { }
 
-    public void PlaySound()
+    public void PlayRoar()
     {
-        audio.Play();
+        if (ConfigManager.Instance.GetCurrentGhost().sex == "female")
+        {
+            audioSource.clip = audioClips[0];
+        }
+        else
+        {
+            audioSource.clip = audioClips[1];
+        }
+        audioSource.Play();
+    }
+
+    public void PlayAttack()
+    {
+        audioSource.clip = audioClips[2];
+        audioSource.Play();
+    }
+
+    public void PlayGrowl()
+    {
+        audioSource.clip = audioClips[3];
+        audioSource.Play();
     }
 }

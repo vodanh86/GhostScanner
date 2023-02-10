@@ -151,7 +151,7 @@ public class GameManager : MonoBehaviour
         flashImage.SetActive(true);
         ghostModel.SetActive(true);
         ghostModel.GetComponent<Animator>().SetBool("yelling", true);
-
+        /*
         yield return new WaitForSeconds(1);
         if (ConfigManager.Instance.GetLevel().sex == "female")
         {
@@ -162,9 +162,9 @@ public class GameManager : MonoBehaviour
             scream.clip = audioClips[1];
         }
         scream.loop = false;
-        scream.Play();
+        scream.Play();*/
 
-        yield return new WaitForSeconds(3.03f);
+        yield return new WaitForSeconds(4.03f);
         ghostModel.SetActive(false);
         flashImage.SetActive(false);
         Time.timeScale = 0;
