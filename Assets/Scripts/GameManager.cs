@@ -165,8 +165,7 @@ public class GameManager : MonoBehaviour
         string levelContent =
             "You found: "
             + ConfigManager.Instance.GetCurrentGhost().ghostName
-            + "\n"
-            + "Click right button to continue scan more ghosts";
+            + ".\nClick right button to scan more ghosts";
         ;
         ghostContent.GetComponent<TMP_Text>().text = levelContent;
         ghostContent.GetComponent<TypeWriterEffect>().SetFullText(levelContent);
@@ -214,6 +213,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         ghostModel.SetActive(false);
         ghostModel = ghost.transform.Find(ConfigManager.Instance.GetCurrentGhost().name).gameObject;
+        Utils.SaveModel(ConfigManager.Instance.GetCurrentGhost().name, Constant.NOT_SAVED_MODEL);
         ConfigManager.Instance.NextGhost();
         canvasResult.SetActive(false);
     }

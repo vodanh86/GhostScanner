@@ -67,6 +67,7 @@ public class MenuManager : MonoBehaviour
 
     public void ScanMore()
     {
+        clickAudio.Play();
         GameObject.FindWithTag("GameController").GetComponent<GameManager>().ScanMore();
     }
 
