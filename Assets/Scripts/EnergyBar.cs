@@ -65,6 +65,7 @@ public class EnergyBar : MonoBehaviour
             {
                 audioSource.Stop();
                 state = 0;
+                gameManager.GetComponent<GameManager>().SetState((int)ScanState.State.SCANNING);
                 ConfigManager.Instance.startTime = Time.time;
             }
             transform.Find("Fill Area").GetComponentInChildren<Slider>().value =

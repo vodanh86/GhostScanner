@@ -58,6 +58,12 @@ public class PhoneCamera : MonoBehaviour
 
         GameObject.FindWithTag("GameController").GetComponent<GameManager>().OnGhostHide +=
             PauseCamera;
+        GameObject.FindWithTag("GameController").GetComponent<GameManager>().OnReScan += PlayCamera;
+    }
+
+    public void PlayCamera()
+    {
+        backCam.Play();
     }
 
     public void PauseCamera()

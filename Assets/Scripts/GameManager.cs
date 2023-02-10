@@ -48,12 +48,16 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private GameObject energyBar;
+
+    [SerializeField]
+    private GameObject phoneCamera;
     private GameObject ghostModel;
     private RadarController radarController;
     private ScanState scanState;
     public event System.Action OnScanning;
     public event System.Action OnGhostFound;
     public event System.Action OnGhostHide;
+    public event System.Action OnReScan;
 
     private int count;
 
@@ -136,7 +140,10 @@ public class GameManager : MonoBehaviour
     IEnumerator ChangeState()
     {
         yield return new WaitForSeconds(5.03f);
-        scanState.SetState((int)ScanState.State.SCANNING);
+        if (scanState.GetState() != (int)ScanState.State.DONE)
+        {
+            scanState.SetState((int)ScanState.State.SCANNING);
+        }
     }
 
     void ShowGhost()
@@ -151,7 +158,7 @@ public class GameManager : MonoBehaviour
         textMessage.GetComponent<TMP_Text>().text = "";
         flashImage.SetActive(true);
         ghostModel.SetActive(true);
-        ghostModel.GetComponent<Animator>().SetInteger("action", 1);
+        ghostModel.GetComponent<Animator>().SetInteger("action", Random.Range(0, 4));
 
         yield return new WaitForSeconds(10.03f);
         flashImage.SetActive(false);
@@ -180,7 +187,6 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         energyBar.GetComponent<EnergyBar>().Charge();
         scanState.SetState((int)ScanState.State.CHARGING);
-        StartCoroutine(ChangeState());
     }
 
     public void ShowEnergyWarning()
@@ -210,17 +216,24 @@ public class GameManager : MonoBehaviour
     public void ScanMore()
     {
         count = 0;
+        OnReScan?.Invoke();
         Time.timeScale = 1;
         ghostModel.SetActive(false);
-        ghostModel = ghost.transform.Find(ConfigManager.Instance.GetCurrentGhost().name).gameObject;
         Utils.SaveModel(ConfigManager.Instance.GetCurrentGhost().name, Constant.NOT_SAVED_MODEL);
+        scanState.SetState((int)ScanState.State.SCANNING);
         ConfigManager.Instance.NextGhost();
+        ghostModel = ghost.transform.Find(ConfigManager.Instance.GetCurrentGhost().name).gameObject;
         canvasResult.SetActive(false);
     }
 
     public int GetState()
     {
         return scanState.GetState();
+    }
+
+    public void SetState(int state)
+    {
+        scanState.SetState(state);
     }
 
     void ResetScaner()
