@@ -185,6 +185,7 @@ public class GameManager : MonoBehaviour
     {
         canvasEnergyWarning.SetActive(false);
         Time.timeScale = 1;
+        energyBar.GetComponent<EnergyBar>().SetFuelSpeed(5f);
         energyBar.GetComponent<EnergyBar>().Charge();
         scanState.SetState((int)ScanState.State.CHARGING);
     }
@@ -205,7 +206,7 @@ public class GameManager : MonoBehaviour
                 .SetFullText(warningContent.GetComponent<TMP_Text>().text);
             warningContent.GetComponent<TypeWriterEffect>().StartShowTextCoroutine(false);
             canvasEnergyWarning.transform
-                .Find("[Button]Reload")
+                .Find("[Text]CountDown")
                 .GetComponent<EnableButton>()
                 .StartCountdown();
         }

@@ -32,12 +32,11 @@ public class EnableButton : MonoBehaviour
             int leftTime = (int)(delayTime + startTime - Time.unscaledTime);
             if (leftTime > 0)
             {
-                txtDelayTime.GetComponent<TMP_Text>().text = leftTime.ToString();
+                txtDelayTime.GetComponent<TMP_Text>().text = Utils.ConvertSecond(leftTime);
             }
             else
             {
                 txtDelayTime.GetComponent<TMP_Text>().text = "";
-                this.GetComponent<Button>().interactable = true;
             }
         }
         else
