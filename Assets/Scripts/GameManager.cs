@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class GameManager : MonoBehaviour
@@ -166,13 +167,10 @@ public class GameManager : MonoBehaviour
         canvasResult.SetActive(true);
         SaveCurrentTime();
         string levelContent =
-            "You found: "
-            + ConfigManager.Instance.GetCurrentGhost().ghostName
-            + ".\nDo you want to scan more ghosts";
-        ;
+            "You found a ghost. \n There are some more around.\n Continue to scan ?";
         canvasResult.transform.Find("[Button]ScanMore").gameObject.SetActive(true);
         canvasResult.transform.Find("[Button]SaveCollection").gameObject.SetActive(false);
-        UpdateCanvasResult(levelContent, SaveModel);
+        UpdateCanvasResult(levelContent, EnableNoThank);
         OnGhostHide?.Invoke();
     }
 
@@ -188,20 +186,26 @@ public class GameManager : MonoBehaviour
         txtCountDown.GetComponent<EnableButton>().StartCountdown(callback);
     }
 
-    private void SaveModel()
+    private void EnableNoThank() { 
+        canvasResult.transform.Find("[Button]NoThank").GetComponent<Button>().interactable = true;
+    }
+
+    public void SaveModel()
     {
         string levelContent =
-            "You found: "
+            "The ghost you found is "
             + ConfigManager.Instance.GetCurrentGhost().ghostName
-            + ".\nDo you want to store ghost into collection";
+            + ".\nDo you want to add the ghost into collection";
         ;
         canvasResult.transform.Find("[Button]ScanMore").gameObject.SetActive(false);
         canvasResult.transform.Find("[Button]SaveCollection").gameObject.SetActive(true);
+        canvasResult.transform.Find("[Button]NoThank").gameObject.SetActive(false);
+        canvasResult.transform.Find("[Button]NextLevel").gameObject.SetActive(true);
         UpdateCanvasResult(
             levelContent,
             () =>
             {
-                GameObject.FindWithTag("MenuManager").GetComponent<MenuManager>().NextLevel();
+                canvasResult.transform.Find("[Button]NextLevel").GetComponent<Button>().interactable = true;
             }
         );
     }
@@ -211,7 +215,7 @@ public class GameManager : MonoBehaviour
         canvasEnergyWarning.SetActive(false);
         Time.timeScale = 1;
         energyBar.GetComponent<EnergyBar>().SetFuelSpeed(5f);
-        energyBar.GetComponent<EnergyBar>().Charge();
+        energyBar.GetComponent<EnergyBar>().Charge(false);
         scanState.SetState((int)ScanState.State.CHARGING);
     }
 

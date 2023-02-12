@@ -24,8 +24,8 @@ public class EnergyBar : MonoBehaviour
     [SerializeField]
     private GameObject canvasEnergyWarning;
     private AudioSource audioSource;
-
     private float startValue;
+    private bool pauseTime = true;
     private int state = 0;
 
     void Start()
@@ -37,18 +37,25 @@ public class EnergyBar : MonoBehaviour
         audioSource.clip = audioClip;
     }
 
+    private float getTime()
+    {
+        if (pauseTime)
+            return Time.unscaledTime;
+        return Time.time;
+    }
+
     public void SetFuelSpeed(float newFuelSpeed)
     {
         fuelSpeed = newFuelSpeed;
     }
 
-    public void Charge()
+    public void Charge(bool timeStatus)
     {
         audioSource.Play();
         state = -1;
-        //startValue = 1f + (ConfigManager.Instance.startTime - Time.time) / energy;
+        pauseTime = timeStatus;
         startValue = transform.Find("Fill Area").GetComponentInChildren<Slider>().value;
-        ConfigManager.Instance.startTime = Time.time;
+        ConfigManager.Instance.startTime = getTime();
     }
 
     // Update is called once per frame
@@ -56,7 +63,7 @@ public class EnergyBar : MonoBehaviour
     {
         if (state == 0)
         {
-            float leftTime = 1f + (ConfigManager.Instance.startTime - Time.time) / energy;
+            float leftTime = 1f + (ConfigManager.Instance.startTime - getTime()) / energy;
             transform.Find("Fill Area").GetComponentInChildren<Slider>().value =
                 leftTime < 0 ? 0 : leftTime;
             if (
@@ -66,15 +73,14 @@ public class EnergyBar : MonoBehaviour
             )
             {
                 gameManager.GetComponent<GameManager>().ShowEnergyWarning();
-                fuelSpeed = (Time.time - ConfigManager.Instance.startTime) / waitTime;
-                Charge();
+                fuelSpeed = (getTime() - ConfigManager.Instance.startTime) / waitTime;
+                Charge(true);
             }
         }
         else
         {
             float leftTime =
-                startValue
-                + (Time.time - ConfigManager.Instance.startTime) * fuelSpeed / energy;
+                startValue + (getTime() - ConfigManager.Instance.startTime) * fuelSpeed / energy;
             if (leftTime > 1)
             {
                 audioSource.Stop();
@@ -82,7 +88,7 @@ public class EnergyBar : MonoBehaviour
                 gameManager.GetComponent<GameManager>().SetState((int)ScanState.State.SCANNING);
                 Time.timeScale = 1;
                 canvasEnergyWarning.SetActive(false);
-                ConfigManager.Instance.startTime = Time.time;
+                ConfigManager.Instance.startTime = getTime();
             }
             transform.Find("Fill Area").GetComponentInChildren<Slider>().value =
                 leftTime > 1 ? 1 : leftTime;
