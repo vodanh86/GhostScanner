@@ -165,20 +165,45 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         canvasResult.SetActive(true);
         SaveCurrentTime();
-
-        // show ghost description
-        Transform ghostContent = canvasResult.transform.Find("[Text]GhostContent");
-        Transform btnNextLevel = canvasResult.transform.Find("[Button]NextLevel");
         string levelContent =
             "You found: "
             + ConfigManager.Instance.GetCurrentGhost().ghostName
-            + ".\nClick right button to scan more ghosts";
+            + ".\nDo you want to scan more ghosts";
         ;
-        ghostContent.GetComponent<TMP_Text>().text = levelContent;
-        ghostContent.GetComponent<TypeWriterEffect>().SetFullText(levelContent);
-        ghostContent.GetComponent<TypeWriterEffect>().StartShowTextCoroutine(false);
-        btnNextLevel.GetComponent<EnableButton>().StartCountdown();
+        canvasResult.transform.Find("[Button]ScanMore").gameObject.SetActive(true);
+        canvasResult.transform.Find("[Button]SaveCollection").gameObject.SetActive(false);
+        UpdateCanvasResult(levelContent, SaveModel);
         OnGhostHide?.Invoke();
+    }
+
+    private void UpdateCanvasResult(string message, System.Action callback)
+    {
+        // show ghost description
+        Transform ghostContent = canvasResult.transform.Find("[Text]GhostContent");
+        Transform txtCountDown = canvasResult.transform.Find("[Text]CountDown");
+
+        ghostContent.GetComponent<TMP_Text>().text = message;
+        ghostContent.GetComponent<TypeWriterEffect>().SetFullText(message);
+        ghostContent.GetComponent<TypeWriterEffect>().StartShowTextCoroutine(false);
+        txtCountDown.GetComponent<EnableButton>().StartCountdown(callback);
+    }
+
+    private void SaveModel()
+    {
+        string levelContent =
+            "You found: "
+            + ConfigManager.Instance.GetCurrentGhost().ghostName
+            + ".\nDo you want to store ghost into collection";
+        ;
+        canvasResult.transform.Find("[Button]ScanMore").gameObject.SetActive(false);
+        canvasResult.transform.Find("[Button]SaveCollection").gameObject.SetActive(true);
+        UpdateCanvasResult(
+            levelContent,
+            () =>
+            {
+                GameObject.FindWithTag("MenuManager").GetComponent<MenuManager>().NextLevel();
+            }
+        );
     }
 
     public void HideEnergyCanvas()
@@ -208,7 +233,7 @@ public class GameManager : MonoBehaviour
             canvasEnergyWarning.transform
                 .Find("[Text]CountDown")
                 .GetComponent<EnableButton>()
-                .StartCountdown();
+                .StartCountdown(() => { });
         }
     }
 

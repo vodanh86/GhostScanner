@@ -15,19 +15,22 @@ public class EnableButton : MonoBehaviour
     private bool started = false;
     private float startTime;
 
+    private System.Action callback;
+
     // Start is called before the first frame update
     void Start() { }
 
-    public void StartCountdown()
+    public void StartCountdown(System.Action inputCallback)
     {
         started = true;
         startTime = Time.unscaledTime;
+        callback = inputCallback;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (started = true)
+        if (started)
         {
             int leftTime = (int)(delayTime + startTime - Time.unscaledTime);
             if (leftTime > 0)
@@ -37,6 +40,7 @@ public class EnableButton : MonoBehaviour
             else
             {
                 txtDelayTime.GetComponent<TMP_Text>().text = "";
+                callback?.Invoke();
             }
         }
         else

@@ -46,9 +46,9 @@ public class EnergyBar : MonoBehaviour
     {
         audioSource.Play();
         state = -1;
-        //startValue = 1f + (ConfigManager.Instance.startTime - Time.unscaledTime) / energy;
+        //startValue = 1f + (ConfigManager.Instance.startTime - Time.time) / energy;
         startValue = transform.Find("Fill Area").GetComponentInChildren<Slider>().value;
-        ConfigManager.Instance.startTime = Time.unscaledTime;
+        ConfigManager.Instance.startTime = Time.time;
     }
 
     // Update is called once per frame
@@ -56,7 +56,7 @@ public class EnergyBar : MonoBehaviour
     {
         if (state == 0)
         {
-            float leftTime = 1f + (ConfigManager.Instance.startTime - Time.unscaledTime) / energy;
+            float leftTime = 1f + (ConfigManager.Instance.startTime - Time.time) / energy;
             transform.Find("Fill Area").GetComponentInChildren<Slider>().value =
                 leftTime < 0 ? 0 : leftTime;
             if (
@@ -66,7 +66,7 @@ public class EnergyBar : MonoBehaviour
             )
             {
                 gameManager.GetComponent<GameManager>().ShowEnergyWarning();
-                fuelSpeed = (Time.unscaledTime - ConfigManager.Instance.startTime) / waitTime;
+                fuelSpeed = (Time.time - ConfigManager.Instance.startTime) / waitTime;
                 Charge();
             }
         }
@@ -74,7 +74,7 @@ public class EnergyBar : MonoBehaviour
         {
             float leftTime =
                 startValue
-                + (Time.unscaledTime - ConfigManager.Instance.startTime) * fuelSpeed / energy;
+                + (Time.time - ConfigManager.Instance.startTime) * fuelSpeed / energy;
             if (leftTime > 1)
             {
                 audioSource.Stop();
@@ -82,7 +82,7 @@ public class EnergyBar : MonoBehaviour
                 gameManager.GetComponent<GameManager>().SetState((int)ScanState.State.SCANNING);
                 Time.timeScale = 1;
                 canvasEnergyWarning.SetActive(false);
-                ConfigManager.Instance.startTime = Time.unscaledTime;
+                ConfigManager.Instance.startTime = Time.time;
             }
             transform.Find("Fill Area").GetComponentInChildren<Slider>().value =
                 leftTime > 1 ? 1 : leftTime;
