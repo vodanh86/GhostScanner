@@ -98,7 +98,7 @@ public class GameManager : MonoBehaviour
             mainCamera.SetActive(false);
             scanState.SetState((int)ScanState.State.FOUND);
             textMessage.GetComponent<TypeWriterEffect>().SetFullText("Signal Found");
-            textMessage.GetComponent<TypeWriterEffect>().StartShowTextCoroutine(false);
+            textMessage.GetComponent<TypeWriterEffect>().StartShowTextCoroutine(false, () => {});
 
             int direction = Random.Range(0, 2) * 2 - 1;
             radarController.SetGhostPostion(
@@ -128,7 +128,7 @@ public class GameManager : MonoBehaviour
         if (scanState.GetState() == (int)ScanState.State.FOUND)
         {
             textMessage.GetComponent<TypeWriterEffect>().SetFullText("Signal Lost");
-            textMessage.GetComponent<TypeWriterEffect>().StartShowTextCoroutine(true);
+            textMessage.GetComponent<TypeWriterEffect>().StartShowTextCoroutine(true, () => {});
         }
 
         StartCoroutine(ChangeState());
@@ -168,8 +168,10 @@ public class GameManager : MonoBehaviour
         SaveCurrentTime();
         string levelContent =
             "You found a ghost. \n There are some more around.\n Continue to scan ?";
-        canvasResult.transform.Find("[Button]ScanMore").gameObject.SetActive(true);
+        canvasResult.transform.Find("[Button]ScanMore").gameObject.SetActive(false);
         canvasResult.transform.Find("[Button]SaveCollection").gameObject.SetActive(false);
+        canvasResult.transform.Find("[Button]NoThank").gameObject.SetActive(false);
+        canvasResult.transform.Find("[Button]NextLevel").gameObject.SetActive(false);
         UpdateCanvasResult(levelContent, EnableNoThank);
         OnGhostHide?.Invoke();
     }
@@ -178,16 +180,20 @@ public class GameManager : MonoBehaviour
     {
         // show ghost description
         Transform ghostContent = canvasResult.transform.Find("[Text]GhostContent");
-        Transform txtCountDown = canvasResult.transform.Find("[Text]CountDown");
 
         ghostContent.GetComponent<TMP_Text>().text = message;
         ghostContent.GetComponent<TypeWriterEffect>().SetFullText(message);
-        ghostContent.GetComponent<TypeWriterEffect>().StartShowTextCoroutine(false);
-        txtCountDown.GetComponent<EnableButton>().StartCountdown(callback);
+        ghostContent.GetComponent<TypeWriterEffect>().StartShowTextCoroutine(false, callback);
     }
 
     private void EnableNoThank() { 
-        canvasResult.transform.Find("[Button]NoThank").GetComponent<Button>().interactable = true;
+        canvasResult.transform.Find("[Button]ScanMore").gameObject.SetActive(true);
+        StartCoroutine(ShowNoThank(canvasResult.transform.Find("[Button]NoThank")));
+    }
+
+    IEnumerator ShowNoThank(Transform transform){
+        yield return new WaitForSecondsRealtime(3);
+        transform.gameObject.SetActive(true);
     }
 
     public void SaveModel()
@@ -198,14 +204,15 @@ public class GameManager : MonoBehaviour
             + ".\nDo you want to add the ghost into collection";
         ;
         canvasResult.transform.Find("[Button]ScanMore").gameObject.SetActive(false);
-        canvasResult.transform.Find("[Button]SaveCollection").gameObject.SetActive(true);
+        canvasResult.transform.Find("[Button]SaveCollection").gameObject.SetActive(false);
         canvasResult.transform.Find("[Button]NoThank").gameObject.SetActive(false);
-        canvasResult.transform.Find("[Button]NextLevel").gameObject.SetActive(true);
+        canvasResult.transform.Find("[Button]NextLevel").gameObject.SetActive(false);
         UpdateCanvasResult(
             levelContent,
             () =>
             {
-                canvasResult.transform.Find("[Button]NextLevel").GetComponent<Button>().interactable = true;
+                canvasResult.transform.Find("[Button]SaveCollection").gameObject.SetActive(true);
+                StartCoroutine(ShowNoThank(canvasResult.transform.Find("[Button]NextLevel")));
             }
         );
     }
@@ -233,7 +240,7 @@ public class GameManager : MonoBehaviour
             warningContent
                 .GetComponent<TypeWriterEffect>()
                 .SetFullText(warningContent.GetComponent<TMP_Text>().text);
-            warningContent.GetComponent<TypeWriterEffect>().StartShowTextCoroutine(false);
+            warningContent.GetComponent<TypeWriterEffect>().StartShowTextCoroutine(false, () => {});
             canvasEnergyWarning.transform
                 .Find("[Text]CountDown")
                 .GetComponent<EnableButton>()
