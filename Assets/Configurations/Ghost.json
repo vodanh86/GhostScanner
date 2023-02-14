@@ -2,10 +2,10 @@
   "ghosts": [
     {
       "name": "1",
-      "ghostName": "Ghost Lily Tomlin",
+      "ghostName": "Vecna",
       "image": "1",
-      "sex": "female",
-      "description": "Ghost Lily Tomlin tries to make Mulder and Scully kill each other so she can hang out with Gillian Anderson in the afterlife, but she really only ends up pushing those two crazy kids closer together at Christmas time. Nice try, though, Lils. Can’t blame a girl for trying."
+      "sex": "male",
+      "description": "Vecna comes from Dungeons & Dragons, and in the game's lore is described as a once human turned undead wizard. "
     },
     {
       "name": "2",
@@ -44,6 +44,13 @@
     },
     {
       "name": "7",
+      "ghostName": "Ghost Lily Tomlin",
+      "image": "1",
+      "sex": "female",
+      "description": "Ghost Lily Tomlin tries to make Mulder and Scully kill each other so she can hang out with Gillian Anderson in the afterlife, but she really only ends up pushing those two crazy kids closer together at Christmas time. Nice try, though, Lils. Can’t blame a girl for trying."
+    },
+    {
+      "name": "8",
       "ghostName": "White Clown",
       "image": "7",
       "sex": "male",

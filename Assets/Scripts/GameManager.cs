@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         for (int j = 0; j < ghost.transform.childCount; j++)
         {
-            ghost.transform.GetChild(j).gameObject.SetActive(false);
+            //ghost.transform.GetChild(j).gameObject.SetActive(false);
         }
         OnGhostFound += ShowGhost;
         ResetScaner();
