@@ -19,7 +19,7 @@ public class AnimationAudio : MonoBehaviour
 
     public void PlayRoar()
     {
-        if (ConfigManager.Instance.GetCurrentGhost().sex == "female")
+        if (ConfigManager.Instance != null && ConfigManager.Instance.GetCurrentGhost().sex == "female")
         {
             audioSource.clip = audioClips[0];
         }
