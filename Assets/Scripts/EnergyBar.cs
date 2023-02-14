@@ -31,7 +31,7 @@ public class EnergyBar : MonoBehaviour
     void Start()
     {
         energy = ConfigManager.Instance.GetLevel().energy;
-
+        ConfigManager.Instance.startTime = getTime();
         audioSource = new GameObject("[EnergyBar]AudioSource").AddComponent<AudioSource>();
         audioSource.loop = true;
         audioSource.clip = audioClip;

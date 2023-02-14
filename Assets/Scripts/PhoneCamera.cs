@@ -17,6 +17,9 @@ public class PhoneCamera : MonoBehaviour
 
     [SerializeField]
     private Transform radar;
+
+    [SerializeField]
+    private GameObject camera;
     public GameObject background;
     public AspectRatioFitter fit;
     private float worldScreenHeight;
@@ -70,22 +73,7 @@ public class PhoneCamera : MonoBehaviour
         float camWidth = backCam.height < backCam.width ? backCam.height : backCam.width;
         float margin = (screenHeight - screenWidth / camWidth * camHeight) / 2;
 
-        Debug.Log(margin);
-        if (margin > 0)
-        {
-            Vector3 tmpPosition = visualizer.GetComponent<RectTransform>().anchoredPosition;
-            visualizer.GetComponent<RectTransform>().anchoredPosition = new Vector3(
-                tmpPosition.x,
-                margin + 85,
-                tmpPosition.z
-            );
-            tmpPosition = radar.GetComponent<RectTransform>().anchoredPosition;
-            radar.GetComponent<RectTransform>().anchoredPosition = new Vector3(
-                tmpPosition.x,
-                margin + 160,
-                tmpPosition.z
-            );
-        }
+        if (margin > 0) { }
 
         backCam.Play();
         background.GetComponent<Renderer>().material.mainTexture = backCam;
@@ -124,7 +112,9 @@ public class PhoneCamera : MonoBehaviour
         float maxScale =
             worldScreenHeight > worldScreenWidth ? worldScreenHeight : worldScreenWidth;
 
-        //Debug.Log((maxScale - minScale*ratio)/2);
+        Vector3 screenPos = camera
+            .GetComponent<Camera>()
+            .WorldToScreenPoint(gameObject.transform.position);
 
         if (orient == 0)
         {
@@ -138,6 +128,19 @@ public class PhoneCamera : MonoBehaviour
                 scaleY * maxScale,
                 1
             );
+
+            Vector3 tmpPosition = visualizer.GetComponent<RectTransform>().anchoredPosition;
+            visualizer.GetComponent<RectTransform>().anchoredPosition = new Vector3(
+                tmpPosition.x,
+                screenPos.y + 45 - gameObject.transform.localScale.y * 50,
+                tmpPosition.z
+            );
+            tmpPosition = radar.GetComponent<RectTransform>().anchoredPosition;
+            radar.GetComponent<RectTransform>().anchoredPosition = new Vector3(
+                tmpPosition.x,
+                screenPos.y + 120 - gameObject.transform.localScale.y * 50,
+                tmpPosition.z
+            );
         }
         else
         {
@@ -150,6 +153,19 @@ public class PhoneCamera : MonoBehaviour
                 maxScale / ratio,
                 scaleY * maxScale,
                 1
+            );
+
+            Vector3 tmpPosition = visualizer.GetComponent<RectTransform>().anchoredPosition;
+            visualizer.GetComponent<RectTransform>().anchoredPosition = new Vector3(
+                tmpPosition.x,
+                screenPos.y + 80 - gameObject.transform.localScale.x * 50,
+                tmpPosition.z
+            );
+            tmpPosition = radar.GetComponent<RectTransform>().anchoredPosition;
+            radar.GetComponent<RectTransform>().anchoredPosition = new Vector3(
+                tmpPosition.x,
+                screenPos.y + 160 - gameObject.transform.localScale.x * 50,
+                tmpPosition.z
             );
         }
     }

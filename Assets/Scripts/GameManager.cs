@@ -221,7 +221,7 @@ public class GameManager : MonoBehaviour
     {
         canvasEnergyWarning.SetActive(false);
         Time.timeScale = 1;
-        energyBar.GetComponent<EnergyBar>().SetFuelSpeed(5f);
+        energyBar.GetComponent<EnergyBar>().SetFuelSpeed(10f);
         energyBar.GetComponent<EnergyBar>().Charge(false);
         scanState.SetState((int)ScanState.State.CHARGING);
     }

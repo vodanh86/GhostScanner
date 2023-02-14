@@ -16,7 +16,7 @@ public class TypeWriterEffect : MonoBehaviour
 
     private bool hideAtTheEnd;
 
-        private System.Action callback;
+    private System.Action callback;
 
     public void SetFullText(string levelContent)
     {
@@ -26,6 +26,7 @@ public class TypeWriterEffect : MonoBehaviour
     // Use this for initialization
     public void StartShowTextCoroutine(bool hide, System.Action inputCallback)
     {
+        delay = 0.1f;
         hideAtTheEnd = hide;
         callback = inputCallback;
         StartCoroutine(ShowText());
@@ -33,9 +34,9 @@ public class TypeWriterEffect : MonoBehaviour
 
     IEnumerator ShowText()
     {
-        for (int i = 1; i <= fullText.Length; i++)
+        for (int i = 1; i <= fullText.Length + 1; i += 2)
         {
-            currentText = fullText.Substring(0, i);
+            currentText = fullText.Substring(0, i > fullText.Length ? fullText.Length : i);
             this.GetComponent<TMP_Text>().text = currentText;
             typingSound.Play();
             yield return new WaitForSecondsRealtime(delay);
