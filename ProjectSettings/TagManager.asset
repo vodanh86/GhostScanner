@@ -7,6 +7,10 @@ TagManager:
   - Radar
   - VibrationManager
   - CanvasEnergy
+  - MenuManager
+  - Player_Weapon
+  - NoInternet
+  - NoAds
   layers:
   - Default
   - TransparentFX

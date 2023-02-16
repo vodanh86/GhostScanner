@@ -2,9 +2,9 @@
   "levels": [
     {
       "name": "1",
-      "levelName": "The Woman in Black",
+      "levelName": "Stranger Things",
       "energy": 100,
-      "description": "Ghost Lily Tomlin tries to make Mulder and Scully kill each other so she can hang out with Gillian Anderson in the afterlife, but she really only ends up pushing those two crazy kids closer together at Christmas time. Nice try, though, Lils. Can’t blame a girl for trying."
+      "description": "Set in the 1980s, the series centers around the residents of the fictional small town of Hawkins, Indiana, as they are plagued by a hostile alternate dimension known as the 'Upside Down',"
     },
     {
       "name": "2",
@@ -29,6 +29,12 @@
       "levelName": "The Bloody Chamber",
       "energy": 60,
       "description": "The moral of this story is when a homeless ghost shows up strumming her guitar and reminding you that anyone can end up on the streets, you gotta give her your new Doc Martens and be a better friend to Ricky."
+    },
+    {
+      "name": "6",
+      "levelName": "The Woman in Black",
+      "energy": 100,
+      "description": "Ghost Lily Tomlin tries to make Mulder and Scully kill each other so she can hang out with Gillian Anderson in the afterlife, but she really only ends up pushing those two crazy kids closer together at Christmas time. Nice try, though, Lils. Can’t blame a girl for trying."
     }
   ]
 }

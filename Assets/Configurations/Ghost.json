@@ -2,10 +2,10 @@
   "ghosts": [
     {
       "name": "1",
-      "ghostName": "Ghost Lily Tomlin",
+      "ghostName": "Vecna",
       "image": "1",
-      "sex": "female",
-      "description": "Ghost Lily Tomlin tries to make Mulder and Scully kill each other so she can hang out with Gillian Anderson in the afterlife, but she really only ends up pushing those two crazy kids closer together at Christmas time. Nice try, though, Lils. Can’t blame a girl for trying."
+      "sex": "male",
+      "description": "Vecna comes from Dungeons & Dragons, and in the game's lore is described as a once human turned undead wizard. "
     },
     {
       "name": "2",
@@ -16,10 +16,10 @@
     },
     {
       "name": "3",
-      "ghostName": "White Clown",
+      "ghostName": "Pausanias",
       "image": "3",
       "sex": "male",
-      "description": " The Otis family moves into a castle that's haunted by a dead nobleman, who, much to his growing annoyance, cannot scare them no matter how hard he tries, and instead, it's the family who ends up spooking the ghost."
+      "description": "A very welcome ghost is that of an unknown man who appears at the Theatre Royal, Drury Lane, London. His appearance at a play is a sure sign that the play will be a huge success."
     },
     {
       "name": "4",
@@ -34,6 +34,27 @@
       "image": "5",
       "sex": "female",
       "description": "The moral of this story is when a homeless ghost shows up strumming her guitar and reminding you that anyone can end up on the streets, you gotta give her your new Doc Martens and be a better friend to Ricky."
+    },
+    {
+      "name": "6",
+      "ghostName": "White Clown",
+      "image": "6",
+      "sex": "male",
+      "description": " The Otis family moves into a castle that's haunted by a dead nobleman, who, much to his growing annoyance, cannot scare them no matter how hard he tries, and instead, it's the family who ends up spooking the ghost."
+    },
+    {
+      "name": "7",
+      "ghostName": "Ghost Lily Tomlin",
+      "image": "1",
+      "sex": "female",
+      "description": "Ghost Lily Tomlin tries to make Mulder and Scully kill each other so she can hang out with Gillian Anderson in the afterlife, but she really only ends up pushing those two crazy kids closer together at Christmas time. Nice try, though, Lils. Can’t blame a girl for trying."
+    },
+    {
+      "name": "8",
+      "ghostName": "White Clown",
+      "image": "7",
+      "sex": "male",
+      "description": " The Otis family moves into a castle that's haunted by a dead nobleman, who, much to his growing annoyance, cannot scare them no matter how hard he tries, and instead, it's the family who ends up spooking the ghost."
     }
   ]
 }

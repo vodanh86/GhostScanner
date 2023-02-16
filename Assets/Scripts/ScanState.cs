@@ -7,8 +7,9 @@ public class ScanState
         IDLE,
         SCANNING,
         WARNING,
+        CHARGING,
         FOUND,
-        DONE
+        DONE,
     }
 
     int state;

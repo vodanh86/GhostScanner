@@ -1,4 +1,3 @@
-
 using Firebase.Analytics;
 using System;
 using System.Collections;
@@ -30,11 +29,12 @@ public class AdManager : Singleton<AdManager>
     }
 
     MaxLoading MaxMediation;
+
     public bool IsInterstitialLoaded(int id = 1)
     {
-
         return true;
     }
+
     public bool ShowInterstitial(string _placement, int id = 1)
     {
         if (!IsInterstitialLoaded(id))
@@ -47,7 +47,7 @@ public class AdManager : Singleton<AdManager>
                 return true;
             case (int)AdEnums.ShowType.INTERSTITIAL:
                 AppOpenAdManager.ResumeFromAds = true;
-               // MaxMediation.ShowInterstitial(_placement);
+                // MaxMediation.ShowInterstitial(_placement);
                 return true;
             case (int)AdEnums.ShowType.VIDEO_REWARD:
                 AppOpenAdManager.ResumeFromAds = true;
@@ -56,13 +56,14 @@ public class AdManager : Singleton<AdManager>
             default:
                 return false;
         }
-
     }
+
     private void OnInterstitialDismissedEvent(string adUnitId, MaxSdkBase.AdInfo adInfo)
     {
         LoadInterstitial();
         AppOpenAdManager.ResumeFromAds = false;
     }
+
     private void OnRewardedDismissedEvent(string adUnitId, MaxSdkBase.AdInfo adInfo)
     {
         LoadRewardedAd();
@@ -109,14 +110,13 @@ public class AdManager : Singleton<AdManager>
         {
             stepLoadAds = 1;
             InitializeInterstitialAds();
-
         }
     }
+
     public void HideBannerAds()
     {
         MaxSdk.HideBanner(bannerAdUnitId);
     }
-
 
     //private void OnBannerAdLoadFailedEvent(string adUnitId, MaxSdkBase.ErrorInfo errorInfo) { }
 
@@ -169,11 +169,13 @@ public class AdManager : Singleton<AdManager>
         }
         return MaxSdk.IsRewardedAdReady(rewardVideoAdUnitID);
     }
+
     IEnumerator HidePopUp(GameObject popup, float timeWait)
     {
         yield return new WaitForSeconds(timeWait);
         popup.SetActive(false);
     }
+
     private void LoadRewardedAd()
     {
         if (!MaxSdk.IsRewardedAdReady(rewardVideoAdUnitID))
@@ -191,14 +193,13 @@ public class AdManager : Singleton<AdManager>
 
     private void OnRewardedAdLoadFailedEvent(string adUnitId, MaxSdkBase.ErrorInfo errorInfo)
     {
-        // Rewarded ad failed to load 
+        // Rewarded ad failed to load
         // AppLovin recommends that you retry with exponentially higher delays, up to a maximum delay (in this case 64 seconds).
         retryAttempt++;
         double retryDelay = Math.Pow(2, Math.Min(6, retryAttempt));
         //double retryDelay = 2* Math.Min(6, retryAttempt);
         Invoke("LoadRewardedAd", (float)retryDelay);
         Debug.Log("MAX > Rewarded ad failed to load with error code: " + errorInfo.Code);
-
     }
 
     private void OnRewardedAdDisplayedEvent(string adUnitId, MaxSdkBase.AdInfo adInfo)
@@ -210,11 +211,14 @@ public class AdManager : Singleton<AdManager>
         }
     }
 
-    private void OnRewardedAdFailedToDisplayEvent(string adUnitId, MaxSdkBase.ErrorInfo errorInfo, MaxSdkBase.AdInfo adInfo)
+    private void OnRewardedAdFailedToDisplayEvent(
+        string adUnitId,
+        MaxSdkBase.ErrorInfo errorInfo,
+        MaxSdkBase.AdInfo adInfo
+    )
     {
         // Rewarded ad failed to display. AppLovin recommends that you load the next ad.
         LoadRewardedAd();
-        
     }
 
     private void OnRewardedAdClickedEvent(string adUnitId, MaxSdkBase.AdInfo adInfo) { }
@@ -226,16 +230,20 @@ public class AdManager : Singleton<AdManager>
         LoadRewardedAd();
     }
 
-    private void OnRewardedAdReceivedRewardEvent(string adUnitId, MaxSdk.Reward reward, MaxSdkBase.AdInfo adInfo)
+    private void OnRewardedAdReceivedRewardEvent(
+        string adUnitId,
+        MaxSdk.Reward reward,
+        MaxSdkBase.AdInfo adInfo
+    )
     {
         // The rewarded ad displayed and the user should receive the reward.
-
     }
 
     private void OnRewardedAdRevenuePaidEvent(string adUnitId, MaxSdkBase.AdInfo adInfo)
     {
         // Ad revenue paid. Use this callback to track user revenue.
     }
+
     public bool ShowVideoAds(string _placement, Action rewardAction)
     {
         //if (GameManager.Instance.debug)
@@ -248,7 +256,6 @@ public class AdManager : Singleton<AdManager>
         {
             if (MaxSdk.IsRewardedAdReady(rewardVideoAdUnitID))
             {
-
                 //CheckFrank
                 //AppOpenAdManager.ResumeFromAds = true;
                 OnEarnRewardAction = rewardAction;
@@ -286,15 +293,18 @@ public class AdManager : Singleton<AdManager>
                 return false;
             }
         }
-
     }
     #endregion
 
     #region Interstitial Ads
 
     int retryAttemptInter;
-    [SerializeField] private GameObject noInternetPopup = null;
-    [SerializeField] private GameObject noAdsPopup = null;
+
+    [SerializeField]
+    private GameObject noInternetPopup = null;
+
+    [SerializeField]
+    private GameObject noAdsPopup = null;
 
     public void InitializeInterstitialAds()
     {
@@ -330,7 +340,7 @@ public class AdManager : Singleton<AdManager>
 
     private void OnInterstitialLoadFailedEvent(string adUnitId, MaxSdkBase.ErrorInfo errorInfo)
     {
-        // Interstitial ad failed to load 
+        // Interstitial ad failed to load
         // AppLovin recommends that you retry with exponentially higher delays, up to a maximum delay (in this case 64 seconds)
 
         retryAttemptInter++;
@@ -344,7 +354,11 @@ public class AdManager : Singleton<AdManager>
         //AppOpenAdManager.ResumeFromAds = false;
     }
 
-    private void OnInterstitialAdFailedToDisplayEvent(string adUnitId, MaxSdkBase.ErrorInfo errorInfo, MaxSdkBase.AdInfo adInfo)
+    private void OnInterstitialAdFailedToDisplayEvent(
+        string adUnitId,
+        MaxSdkBase.ErrorInfo errorInfo,
+        MaxSdkBase.AdInfo adInfo
+    )
     {
         // Interstitial ad failed to display. AppLovin recommends that you load the next ad.
         LoadInterstitial();

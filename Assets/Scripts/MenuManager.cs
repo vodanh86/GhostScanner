@@ -25,6 +25,7 @@ public class MenuManager : MonoBehaviour
 
     public void GoBack()
     {
+        clickAudio.Play();
         if (ConfigManager.Instance.nextScene == Constant.GHOST_SCANNER_SCENE_NAME)
         {
             SceneManager.LoadScene(Constant.GHOST_SCANNER_SCENE_NAME);
@@ -53,13 +54,21 @@ public class MenuManager : MonoBehaviour
 
     public void StartScan()
     {
+        clickAudio.Play();
         ConfigManager.Instance.startTime = Time.time;
         GoToScene(Constant.GHOST_SCANNER_SCENE_NAME);
     }
 
     public void Recharge()
     {
+        clickAudio.Play();
         GameObject.FindWithTag("GameController").GetComponent<GameManager>().HideEnergyCanvas();
+    }
+
+    public void ScanMore()
+    {
+        clickAudio.Play();
+        GameObject.FindWithTag("GameController").GetComponent<GameManager>().ScanMore();
     }
 
     public void NextLevel()

@@ -415,6 +415,7 @@ namespace DanielLochner.Assets.SimpleScrollSnap
             prevAnchoredPosition = Content.anchoredPosition = -Panels[startingPanel].anchoredPosition + offset;
             SelectedPanel = CenteredPanel = startingPanel;
 
+            UpdateButton();
             // Buttons
             if (previousButton != null)
             {
@@ -621,6 +622,19 @@ namespace DanielLochner.Assets.SimpleScrollSnap
                 ScrollRect.inertia = false;
             }
         }
+
+        private void UpdateButton(){
+            if (CenteredPanel == 0){
+                previousButton.interactable = false;
+            } else {
+                previousButton.interactable = true;
+            }
+            if (CenteredPanel >= NumberOfPanels - 1){
+                nextButton.interactable = false;
+            } else {
+                nextButton.interactable = true;
+            }
+        }
         public void GoToPreviousPanel()
         {
             int nearestPanel = GetNearestPanel();
@@ -639,6 +653,7 @@ namespace DanielLochner.Assets.SimpleScrollSnap
                     GoToPanel(nearestPanel);
                 }
             }
+            UpdateButton();
         }
         public void GoToNextPanel()
         {
@@ -658,6 +673,7 @@ namespace DanielLochner.Assets.SimpleScrollSnap
                     GoToPanel(nearestPanel);
                 }
             }
+            UpdateButton();
         }
 
         public void AddToFront(GameObject panel)
