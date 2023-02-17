@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class GameManager : MonoBehaviour
@@ -48,12 +49,16 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private GameObject energyBar;
+
+    [SerializeField]
+    private GameObject phoneCamera;
     private GameObject ghostModel;
     private RadarController radarController;
     private ScanState scanState;
     public event System.Action OnScanning;
     public event System.Action OnGhostFound;
     public event System.Action OnGhostHide;
+    public event System.Action OnReScan;
 
     private int count;
 
@@ -72,8 +77,6 @@ public class GameManager : MonoBehaviour
         {
             AdManager.Ins.showInterstitialAds("CallAtEndGame");
         }
-
-       
         count = 0;
         scanState = new ScanState();
         scanState.SetState((int)ScanState.State.SCANNING);
@@ -86,7 +89,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         for (int j = 0; j < ghost.transform.childCount; j++)
         {
-            ghost.transform.GetChild(j).gameObject.SetActive(false);
+            //ghost.transform.GetChild(j).gameObject.SetActive(false);
         }
         OnGhostFound += ShowGhost;
         ResetScaner();
@@ -102,6 +105,9 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       // Debug.Log(scanTime);
+       // Debug.Log(scanState);
+       // Debug.Log(Time.time > scanTime && scanState.GetState() == (int)ScanState.State.SCANNING);
         if (Time.time > scanTime && scanState.GetState() == (int)ScanState.State.SCANNING)
         {
             count++;
@@ -109,7 +115,7 @@ public class GameManager : MonoBehaviour
             mainCamera.SetActive(false);
             scanState.SetState((int)ScanState.State.FOUND);
             textMessage.GetComponent<TypeWriterEffect>().SetFullText("Signal Found");
-            textMessage.GetComponent<TypeWriterEffect>().StartShowTextCoroutine(false);
+            textMessage.GetComponent<TypeWriterEffect>().StartShowTextCoroutine(false, () => {});
 
             int direction = Random.Range(0, 2) * 2 - 1;
             radarController.SetGhostPostion(
@@ -136,10 +142,10 @@ public class GameManager : MonoBehaviour
         scream.loop = false;
         scream.Stop();
 
-        if (scanState.GetState() != (int)ScanState.State.WARNING)
+        if (scanState.GetState() == (int)ScanState.State.FOUND)
         {
             textMessage.GetComponent<TypeWriterEffect>().SetFullText("Signal Lost");
-            textMessage.GetComponent<TypeWriterEffect>().StartShowTextCoroutine(true);
+            textMessage.GetComponent<TypeWriterEffect>().StartShowTextCoroutine(true, () => {});
         }
 
         StartCoroutine(ChangeState());
@@ -152,11 +158,15 @@ public class GameManager : MonoBehaviour
     IEnumerator ChangeState()
     {
         yield return new WaitForSeconds(5.03f);
-        scanState.SetState((int)ScanState.State.SCANNING);
+        if (scanState.GetState() != (int)ScanState.State.DONE)
+        {
+            scanState.SetState((int)ScanState.State.SCANNING);
+        }
     }
 
     void ShowGhost()
     {
+        scanState.SetState((int)ScanState.State.DONE);
         StartCoroutine(GhostJumps());
     }
 
@@ -166,50 +176,71 @@ public class GameManager : MonoBehaviour
         textMessage.GetComponent<TMP_Text>().text = "";
         flashImage.SetActive(true);
         ghostModel.SetActive(true);
-        ghostModel.GetComponent<Animator>().SetBool("yelling", true);
+        ghostModel.GetComponent<Animator>().SetInteger("action", Random.Range(0, 4));
 
-        yield return new WaitForSeconds(1);
-        if (ConfigManager.Instance.GetLevel().sex == "female")
-        {
-            scream.clip = audioClips[0];
-        }
-        else
-        {
-            scream.clip = audioClips[1];
-        }
-        scream.loop = false;
-        scream.Play();
-
-        yield return new WaitForSeconds(3.03f);
-        ghostModel.SetActive(false);
+        yield return new WaitForSeconds(10.03f);
         flashImage.SetActive(false);
         Time.timeScale = 0;
         canvasResult.SetActive(true);
         SaveCurrentTime();
+        string levelContent =
+            "You found a ghost. \n There are some more around.\n Continue to scan ?";
+        canvasResult.transform.Find("[Button]ScanMore").gameObject.SetActive(false);
+        canvasResult.transform.Find("[Button]SaveCollection").gameObject.SetActive(false);
+        canvasResult.transform.Find("[Button]NoThank").gameObject.SetActive(false);
+        canvasResult.transform.Find("[Button]NextLevel").gameObject.SetActive(false);
+        UpdateCanvasResult(levelContent, EnableNoThank);
+        OnGhostHide?.Invoke();
+    }
 
+    private void UpdateCanvasResult(string message, System.Action callback)
+    {
         // show ghost description
         Transform ghostContent = canvasResult.transform.Find("[Text]GhostContent");
-        Transform btnNextLevel = canvasResult.transform.Find("[Button]NextLevel");
+
+        ghostContent.GetComponent<TMP_Text>().text = message;
+        ghostContent.GetComponent<TypeWriterEffect>().SetFullText(message);
+        ghostContent.GetComponent<TypeWriterEffect>().StartShowTextCoroutine(false, callback);
+    }
+
+    private void EnableNoThank() { 
+        canvasResult.transform.Find("[Button]ScanMore").gameObject.SetActive(true);
+        StartCoroutine(ShowNoThank(canvasResult.transform.Find("[Button]NoThank")));
+    }
+
+    IEnumerator ShowNoThank(Transform transform){
+        yield return new WaitForSecondsRealtime(3);
+        transform.gameObject.SetActive(true);
+    }
+
+    public void SaveModel()
+    {
         string levelContent =
-            "Level "
-            + ConfigManager.Instance.GetLevel().name
-            + "\n"
-            + "You found: "
-            + ConfigManager.Instance.GetCurrentGhost().ghostName;
+            "The ghost you found is "
+            + ConfigManager.Instance.GetCurrentGhost().ghostName
+            + ".\nDo you want to add the ghost into collection";
         ;
-        ghostContent.GetComponent<TMP_Text>().text = levelContent;
-        ghostContent.GetComponent<TypeWriterEffect>().SetFullText(levelContent);
-        ghostContent.GetComponent<TypeWriterEffect>().StartShowTextCoroutine(false);
-        btnNextLevel.GetComponent<EnableButton>().StartCountdown();
-        OnGhostHide?.Invoke();
+        canvasResult.transform.Find("[Button]ScanMore").gameObject.SetActive(false);
+        canvasResult.transform.Find("[Button]SaveCollection").gameObject.SetActive(false);
+        canvasResult.transform.Find("[Button]NoThank").gameObject.SetActive(false);
+        canvasResult.transform.Find("[Button]NextLevel").gameObject.SetActive(false);
+        UpdateCanvasResult(
+            levelContent,
+            () =>
+            {
+                canvasResult.transform.Find("[Button]SaveCollection").gameObject.SetActive(true);
+                StartCoroutine(ShowNoThank(canvasResult.transform.Find("[Button]NextLevel")));
+            }
+        );
     }
 
     public void HideEnergyCanvas()
     {
         canvasEnergyWarning.SetActive(false);
         Time.timeScale = 1;
-        energyBar.GetComponent<EnergyBar>().Charge();
-        scanState.SetState((int)ScanState.State.SCANNING);
+        energyBar.GetComponent<EnergyBar>().SetFuelSpeed(10f);
+        energyBar.GetComponent<EnergyBar>().Charge(false);
+        scanState.SetState((int)ScanState.State.CHARGING);
     }
 
     public void ShowEnergyWarning()
@@ -226,43 +257,37 @@ public class GameManager : MonoBehaviour
             warningContent
                 .GetComponent<TypeWriterEffect>()
                 .SetFullText(warningContent.GetComponent<TMP_Text>().text);
-            warningContent.GetComponent<TypeWriterEffect>().StartShowTextCoroutine(false);
+            warningContent.GetComponent<TypeWriterEffect>().StartShowTextCoroutine(false, () => {});
             canvasEnergyWarning.transform
-                .Find("[Button]Reload")
+                .Find("[Text]CountDown")
                 .GetComponent<EnableButton>()
-                .StartCountdown();
+                .StartCountdown(() => { });
         }
-        /* SaveCurrentTime();
- 
-         // show ghost description
-         Transform ghostContent = canvasResult.transform.Find("[Text]GhostContent");
-         Transform btnNextLevel = canvasResult.transform.Find("[Button]NextLevel");
-         string levelContent =
-             "Level "
-             + ConfigManager.Instance.GetLevel().name
-             + "\n"
-             + "You found: "
-             + ConfigManager.Instance.GetLevel().ghostName;
-         ;
-         ghostContent.GetComponent<TMP_Text>().text = levelContent;
-         ghostContent.GetComponent<TypeWriterEffect>().SetFullText(levelContent);
-         ghostContent.GetComponent<TypeWriterEffect>().StartShowTextCoroutine(false);
-         btnNextLevel.GetComponent<EnableButton>().StartCountdown();*/
     }
 
-    void SaveCurrentTime() { /*
-        string lastSavedGhosts = PlayerPrefs.GetString(Constant.PLAYER_PREFS_CATCH_TIME);
-        lastSavedGhosts +=
-            ConfigManager.Instance.GetCurrentLevel()
-            + Constant.PLAYER_PREFS_SEPERATOR
-            + System.DateTime.Now
-            + Constant.PLAYER_PREFS_SEPERATOR;
-        PlayerPrefs.SetString(Constant.PLAYER_PREFS_CATCH_TIME, lastSavedGhosts);*/
+    void SaveCurrentTime() { }
+
+    public void ScanMore()
+    {
+        count = 0;
+        OnReScan?.Invoke();
+        Time.timeScale = 1;
+        ghostModel.SetActive(false);
+        Utils.SaveModel(ConfigManager.Instance.GetCurrentGhost().name, Constant.NOT_SAVED_MODEL);
+        scanState.SetState((int)ScanState.State.SCANNING);
+        ConfigManager.Instance.NextGhost();
+        ghostModel = ghost.transform.Find(ConfigManager.Instance.GetCurrentGhost().name).gameObject;
+        canvasResult.SetActive(false);
     }
 
     public int GetState()
     {
         return scanState.GetState();
+    }
+
+    public void SetState(int state)
+    {
+        scanState.SetState(state);
     }
 
     void ResetScaner()

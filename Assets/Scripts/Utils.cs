@@ -66,4 +66,16 @@ public static class Utils
         transform.Find("[Image]Cover").gameObject.SetActive(coverStatus);
         transform.Find("[Button]Unlock").gameObject.SetActive(buttonStatus);
     }
+
+    public static string ConvertSecond(int timer)
+    {
+        float minutes = Mathf.Floor(timer / 60);
+        float seconds = Mathf.RoundToInt(timer % 60);
+
+        string strMinutes = minutes < 10 ? "0" + minutes.ToString() : minutes.ToString();
+        string strSeconds =
+            seconds < 10 ? "0" + Mathf.RoundToInt(seconds).ToString() : seconds.ToString();
+
+        return strMinutes + ":" + strSeconds;
+    }
 }
