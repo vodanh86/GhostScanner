@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -70,6 +71,9 @@ public class CollectionScene : MonoBehaviour
                     ghostDescription;
             }
         }
+        // preload main
+        AsyncOperation async = SceneManager.LoadSceneAsync("GhostScanner", LoadSceneMode.Single);
+        async.allowSceneActivation = false;
     }
 
     // Update is called once per frame
