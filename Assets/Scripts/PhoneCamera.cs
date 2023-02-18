@@ -129,18 +129,18 @@ public class PhoneCamera : MonoBehaviour
                 1
             );
 
-            Vector3 tmpPosition = visualizer.GetComponent<RectTransform>().anchoredPosition;
+            /*Vector3 tmpPosition = visualizer.GetComponent<RectTransform>().anchoredPosition;
             visualizer.GetComponent<RectTransform>().anchoredPosition = new Vector3(
                 tmpPosition.x,
-                screenPos.y + 45 - gameObject.transform.localScale.y * 50,
+                screenPos.y + 125 - gameObject.transform.localScale.y * 50,
                 tmpPosition.z
             );
             tmpPosition = radar.GetComponent<RectTransform>().anchoredPosition;
             radar.GetComponent<RectTransform>().anchoredPosition = new Vector3(
                 tmpPosition.x,
-                screenPos.y + 120 - gameObject.transform.localScale.y * 50,
+                screenPos.y + 200 - gameObject.transform.localScale.y * 50,
                 tmpPosition.z
-            );
+            );*/
         }
         else
         {
@@ -155,18 +155,18 @@ public class PhoneCamera : MonoBehaviour
                 1
             );
 
-            Vector3 tmpPosition = visualizer.GetComponent<RectTransform>().anchoredPosition;
+            /*Vector3 tmpPosition = visualizer.GetComponent<RectTransform>().anchoredPosition;
             visualizer.GetComponent<RectTransform>().anchoredPosition = new Vector3(
                 tmpPosition.x,
-                screenPos.y + 80 - gameObject.transform.localScale.x * 50,
+                screenPos.y + 160 - gameObject.transform.localScale.x * 50,
                 tmpPosition.z
             );
             tmpPosition = radar.GetComponent<RectTransform>().anchoredPosition;
             radar.GetComponent<RectTransform>().anchoredPosition = new Vector3(
                 tmpPosition.x,
-                screenPos.y + 160 - gameObject.transform.localScale.x * 50,
+                screenPos.y + 240 - gameObject.transform.localScale.x * 50,
                 tmpPosition.z
-            );
+            );*/
         }
     }
 }

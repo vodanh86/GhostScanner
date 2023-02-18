@@ -65,6 +65,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; set; }
     public bool debug = false;
     public bool removeAds = false;
+
     void Awake()
     {
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
@@ -73,7 +74,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(AdManager.Ins.CheckHasRewardAds(true))
+        if (AdManager.Ins.CheckHasRewardAds(true) && ConfigManager.Instance.previousScene == "Main")
         {
             AdManager.Ins.showInterstitialAds("CallAtEndGame");
         }
@@ -89,25 +90,17 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         for (int j = 0; j < ghost.transform.childCount; j++)
         {
-            //ghost.transform.GetChild(j).gameObject.SetActive(false);
+            ghost.transform.GetChild(j).gameObject.SetActive(false);
         }
         OnGhostFound += ShowGhost;
         ResetScaner();
-        /////////Example of call Ads in Game
-        // AdManager.Ins.showInterstitialAds("CallAtEndGame");
-        // AdManager.Ins.ShowVideoAds("CallWhenWatchVideo", RewardOfVideoAds);
     }
-    public void RewardOfVideoAds()
-    {
 
-    }
+    public void RewardOfVideoAds() { }
 
     // Update is called once per frame
     void Update()
     {
-       // Debug.Log(scanTime);
-       // Debug.Log(scanState);
-       // Debug.Log(Time.time > scanTime && scanState.GetState() == (int)ScanState.State.SCANNING);
         if (Time.time > scanTime && scanState.GetState() == (int)ScanState.State.SCANNING)
         {
             count++;
@@ -115,23 +108,27 @@ public class GameManager : MonoBehaviour
             mainCamera.SetActive(false);
             scanState.SetState((int)ScanState.State.FOUND);
             textMessage.GetComponent<TypeWriterEffect>().SetFullText("Signal Found");
-            textMessage.GetComponent<TypeWriterEffect>().StartShowTextCoroutine(false, () => {});
+            textMessage.GetComponent<TypeWriterEffect>().StartShowTextCoroutine(false, () => { });
 
             int direction = Random.Range(0, 2) * 2 - 1;
             radarController.SetGhostPostion(
                 Random.Range(ghostRadius / 4, ghostRadius) * direction,
                 Random.Range(ghostRadius / 4, ghostRadius)
             );
-            StartCoroutine(HideGhost());
 
             if (count >= Random.Range(foundTime, foundTime * 2))
             {
+                StartCoroutine(HideGhost(false));
                 OnGhostFound?.Invoke();
+            }
+            else
+            {
+                StartCoroutine(HideGhost(true));
             }
         }
     }
 
-    IEnumerator HideGhost()
+    IEnumerator HideGhost(bool changeState)
     {
         scream.clip = audioClips[2];
         scream.loop = true;
@@ -145,10 +142,13 @@ public class GameManager : MonoBehaviour
         if (scanState.GetState() == (int)ScanState.State.FOUND)
         {
             textMessage.GetComponent<TypeWriterEffect>().SetFullText("Signal Lost");
-            textMessage.GetComponent<TypeWriterEffect>().StartShowTextCoroutine(true, () => {});
+            textMessage.GetComponent<TypeWriterEffect>().StartShowTextCoroutine(true, () => { });
         }
 
-        StartCoroutine(ChangeState());
+        if (changeState)
+        {
+            StartCoroutine(ChangeState());
+        }
         mainCamera.SetActive(true);
         filterCamera.SetActive(false);
 
@@ -172,6 +172,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator GhostJumps()
     {
+        scanState.SetState((int)ScanState.State.WARNING);
         yield return new WaitForSeconds(5.03f);
         textMessage.GetComponent<TMP_Text>().text = "";
         flashImage.SetActive(true);
@@ -203,12 +204,14 @@ public class GameManager : MonoBehaviour
         ghostContent.GetComponent<TypeWriterEffect>().StartShowTextCoroutine(false, callback);
     }
 
-    private void EnableNoThank() { 
+    private void EnableNoThank()
+    {
         canvasResult.transform.Find("[Button]ScanMore").gameObject.SetActive(true);
         StartCoroutine(ShowNoThank(canvasResult.transform.Find("[Button]NoThank")));
     }
 
-    IEnumerator ShowNoThank(Transform transform){
+    IEnumerator ShowNoThank(Transform transform)
+    {
         yield return new WaitForSecondsRealtime(3);
         transform.gameObject.SetActive(true);
     }
@@ -257,7 +260,9 @@ public class GameManager : MonoBehaviour
             warningContent
                 .GetComponent<TypeWriterEffect>()
                 .SetFullText(warningContent.GetComponent<TMP_Text>().text);
-            warningContent.GetComponent<TypeWriterEffect>().StartShowTextCoroutine(false, () => {});
+            warningContent
+                .GetComponent<TypeWriterEffect>()
+                .StartShowTextCoroutine(false, () => { });
             canvasEnergyWarning.transform
                 .Find("[Text]CountDown")
                 .GetComponent<EnableButton>()

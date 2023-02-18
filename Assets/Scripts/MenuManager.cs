@@ -17,10 +17,16 @@ public class MenuManager : MonoBehaviour
     // Update is called once per frame
     void Update() { }
 
+    private void SaveAndLoadScene(string sceneName)
+    {
+        ConfigManager.Instance.previousScene = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(sceneName);
+    }
+
     public void GoToScene(string sceneName)
     {
         clickAudio.Play();
-        SceneManager.LoadScene(sceneName);
+        SaveAndLoadScene(sceneName);
     }
 
     public void GoBack()
@@ -28,11 +34,11 @@ public class MenuManager : MonoBehaviour
         clickAudio.Play();
         if (ConfigManager.Instance.nextScene == Constant.GHOST_SCANNER_SCENE_NAME)
         {
-            SceneManager.LoadScene(Constant.GHOST_SCANNER_SCENE_NAME);
+            SaveAndLoadScene(Constant.GHOST_SCANNER_SCENE_NAME);
         }
         else
         {
-            SceneManager.LoadScene(Constant.MAIN_SCENE_NAME);
+            SaveAndLoadScene(Constant.MAIN_SCENE_NAME);
         }
     }
 
@@ -40,16 +46,25 @@ public class MenuManager : MonoBehaviour
     {
         clickAudio.Play();
         ConfigManager.Instance.nextScene = Constant.GHOST_SCANNER_SCENE_NAME;
-        SceneManager.LoadScene(Constant.COLLECTION_SCENE_NAME);
+        SaveAndLoadScene(Constant.COLLECTION_SCENE_NAME);
     }
 
     public void SaveLevel()
     {
         clickAudio.Play();
-        Utils.SaveModel(ConfigManager.Instance.GetCurrentGhost().name, Constant.SAVED_MODEL);
-        ConfigManager.Instance.NextLevel();
-        ConfigManager.Instance.nextScene = Constant.MAIN_SCENE_NAME;
-        SceneManager.LoadScene(Constant.COLLECTION_SCENE_NAME);
+        AdManager.Ins.ShowVideoAds(
+            "CallWhenWatchVideo",
+            () =>
+            {
+                Utils.SaveModel(
+                    ConfigManager.Instance.GetCurrentGhost().name,
+                    Constant.SAVED_MODEL
+                );
+                ConfigManager.Instance.NextLevel();
+                ConfigManager.Instance.nextScene = Constant.MAIN_SCENE_NAME;
+                SaveAndLoadScene(Constant.COLLECTION_SCENE_NAME);
+            }
+        );
     }
 
     public void StartScan()
@@ -62,13 +77,19 @@ public class MenuManager : MonoBehaviour
     public void Recharge()
     {
         clickAudio.Play();
-        GameObject.FindWithTag("GameController").GetComponent<GameManager>().HideEnergyCanvas();
+        AdManager.Ins.ShowVideoAds(
+            "CallWhenWatchVideo",
+            GameObject.FindWithTag("GameController").GetComponent<GameManager>().HideEnergyCanvas
+        );
     }
 
     public void ScanMore()
     {
         clickAudio.Play();
-        GameObject.FindWithTag("GameController").GetComponent<GameManager>().ScanMore();
+        AdManager.Ins.ShowVideoAds(
+            "CallWhenWatchVideo",
+            GameObject.FindWithTag("GameController").GetComponent<GameManager>().ScanMore
+        );
     }
 
     public void NextLevel()
@@ -76,6 +97,6 @@ public class MenuManager : MonoBehaviour
         clickAudio.Play();
         Utils.SaveModel(ConfigManager.Instance.GetCurrentGhost().name, Constant.NOT_SAVED_MODEL);
         ConfigManager.Instance.NextLevel();
-        SceneManager.LoadScene(Constant.MAIN_SCENE_NAME);
+        SaveAndLoadScene(Constant.MAIN_SCENE_NAME);
     }
 }

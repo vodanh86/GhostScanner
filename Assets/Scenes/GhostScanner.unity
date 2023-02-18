@@ -3886,8 +3886,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 276a01f09f64949b78c146c1fcb61b3c, type: 2}
+  m_sharedMaterial: {fileID: 2140032, guid: 276a01f09f64949b78c146c1fcb61b3c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5352,8 +5352,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 276a01f09f64949b78c146c1fcb61b3c, type: 2}
+  m_sharedMaterial: {fileID: 2140032, guid: 276a01f09f64949b78c146c1fcb61b3c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5626,7 +5626,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1196797323905981126, guid: 632f98470b6374cc285289e791097a50, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 85.400024
+      value: 217.40002
       objectReference: {fileID: 0}
     - target: {fileID: 1196797323905981126, guid: 632f98470b6374cc285289e791097a50, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -6372,8 +6372,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: BACK
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 276a01f09f64949b78c146c1fcb61b3c, type: 2}
+  m_sharedMaterial: {fileID: 2140032, guid: 276a01f09f64949b78c146c1fcb61b3c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -8069,7 +8069,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2316771174894991178, guid: 285ee0fabbe164844b498661030b195c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 161
+      value: 293
       objectReference: {fileID: 0}
     - target: {fileID: 2316771174894991178, guid: 285ee0fabbe164844b498661030b195c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

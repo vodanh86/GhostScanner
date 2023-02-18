@@ -20,6 +20,8 @@ public class ConfigManager : MonoBehaviour
 
     public float startTime = 0;
 
+    public string previousScene = "";
+
     private void Awake()
     {
         if (Instance == null)

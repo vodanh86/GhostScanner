@@ -59,8 +59,14 @@ public class CollectionScene : MonoBehaviour
                     button.onClick.AddListener(() =>
                     {
                         SoundManager.Instance.PlayClick();
-                        Utils.SaveModel(tmpLevel, Constant.SAVED_MODEL);
-                        Utils.ShowGhostInCarosel(transform, false, false);
+                        AdManager.Ins.ShowVideoAds(
+                            "CallWhenWatchVideo",
+                            () =>
+                            {
+                                Utils.SaveModel(tmpLevel, Constant.SAVED_MODEL);
+                                Utils.ShowGhostInCarosel(transform, false, false);
+                            }
+                        );
                     });
                 }
                 rawImage.GetComponent<RawImage>().texture = myTexture;
