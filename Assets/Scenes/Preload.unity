@@ -144,7 +144,7 @@ PrefabInstance:
     - target: {fileID: 190212599007269381, guid: 4fe70591872ef4cc4aa42b5c244eda68, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 16ce558e505a8441d8725d30d77d55d1, type: 3}
+      objectReference: {fileID: 21300000, guid: 79eb7163ab4ea47a5a5c661638bc9479, type: 3}
     - target: {fileID: 190212599007269403, guid: 4fe70591872ef4cc4aa42b5c244eda68, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -264,6 +264,10 @@ PrefabInstance:
     - target: {fileID: 8399149912148367261, guid: 4fe70591872ef4cc4aa42b5c244eda68, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8399149912882548929, guid: 4fe70591872ef4cc4aa42b5c244eda68, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 614
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4fe70591872ef4cc4aa42b5c244eda68, type: 3}
@@ -631,15 +635,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9b19271525c47401b93f99ffd883e572, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 79eb7163ab4ea47a5a5c661638bc9479, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.18, y: 3.21}
+  m_Size: {x: 19.2, y: 13.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1293643695
@@ -912,7 +916,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 325}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1815591034

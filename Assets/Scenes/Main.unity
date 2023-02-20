@@ -333,6 +333,7 @@ MonoBehaviour:
   ghostConfig: {fileID: 4900000, guid: 090bc3bb31bb44da791dc01f355e112f, type: 3}
   nextScene: 
   startTime: 0
+  previousScene: 
 --- !u!4 &461556435
 Transform:
   m_ObjectHideFlags: 0
@@ -470,7 +471,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 16ce558e505a8441d8725d30d77d55d1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 79eb7163ab4ea47a5a5c661638bc9479, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

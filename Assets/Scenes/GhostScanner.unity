@@ -442,7 +442,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 02:00
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 276a01f09f64949b78c146c1fcb61b3c, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -506,7 +506,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &313534411
@@ -2486,7 +2486,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Save
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 276a01f09f64949b78c146c1fcb61b3c, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -2550,7 +2550,7 @@ MonoBehaviour:
   m_margin: {x: 3.3994083, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &794606260
@@ -5626,7 +5626,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1196797323905981126, guid: 632f98470b6374cc285289e791097a50, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 217.40002
+      value: 267
       objectReference: {fileID: 0}
     - target: {fileID: 1196797323905981126, guid: 632f98470b6374cc285289e791097a50, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -6777,6 +6777,7 @@ MonoBehaviour:
   ghostConfig: {fileID: 4900000, guid: 090bc3bb31bb44da791dc01f355e112f, type: 3}
   nextScene: 
   startTime: 0
+  previousScene: 
 --- !u!4 &1758931500
 Transform:
   m_ObjectHideFlags: 0
@@ -7995,6 +7996,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 611259267}
     m_Modifications:
+    - target: {fileID: 195674673984814385, guid: 285ee0fabbe164844b498661030b195c, type: 3}
+      propertyPath: txtDelayTime
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 195674673984814387, guid: 285ee0fabbe164844b498661030b195c, type: 3}
       propertyPath: m_Name
       value: Radar
@@ -8069,7 +8074,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2316771174894991178, guid: 285ee0fabbe164844b498661030b195c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 293
+      value: 342.59998
       objectReference: {fileID: 0}
     - target: {fileID: 2316771174894991178, guid: 285ee0fabbe164844b498661030b195c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
