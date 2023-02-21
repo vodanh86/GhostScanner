@@ -45,14 +45,28 @@
     {
       "name": "7",
       "ghostName": "Ghost Lily Tomlin",
-      "image": "1",
+      "image": "7",
       "sex": "female",
       "description": "Ghost Lily Tomlin tries to make Mulder and Scully kill each other so she can hang out with Gillian Anderson in the afterlife, but she really only ends up pushing those two crazy kids closer together at Christmas time. Nice try, though, Lils. Can’t blame a girl for trying."
     },
     {
       "name": "8",
+      "ghostName": "The Crying Lady",
+      "image": "8",
+      "sex": "female",
+      "description": "Before that fateful day on December 8, though, John said he say a 'crying lady ghost' walking the halls, and afterward Yoko, who still resides there, claimed she saw John's ghost sitting at his piano and that he said to her: 'Don't be afraid. I am still with you.'"
+    },
+    {
+      "name": "9",
+      "ghostName": "Freddy Krueger in A Nightmare on Elm Street",
+      "image": "9",
+      "sex": "male",
+      "description": " The Otis family moves into a castle that's haunted by a dead nobleman, who, much to his growing annoyance, cannot scare them no matter how hard he tries, and instead, it's the family who ends up spooking the ghost."
+    } ,
+    {
+      "name": "10",
       "ghostName": "White Clown",
-      "image": "7",
+      "image": "8",
       "sex": "male",
       "description": " The Otis family moves into a castle that's haunted by a dead nobleman, who, much to his growing annoyance, cannot scare them no matter how hard he tries, and instead, it's the family who ends up spooking the ghost."
     }
