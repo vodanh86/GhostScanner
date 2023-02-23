@@ -100,8 +100,15 @@
     },
     {
       "name": "15",
-      "ghostName": "White Clown",
+      "ghostName": "Tiya Miles",
       "image": "8",
+      "sex": "female",
+      "description": "When comedian Wanda Sykes told talk show host Ellen DeGeneres that she had seen a black slave ghost in the Jefferson Hotel last summer, Sykes confessed that she didn't want people to think she was 'crazy.'"
+    },
+    {
+      "name": "16",
+      "ghostName": "White Clown",
+      "image": "16",
       "sex": "male",
       "description": " The Otis family moves into a castle that's haunted by a dead nobleman, who, much to his growing annoyance, cannot scare them no matter how hard he tries, and instead, it's the family who ends up spooking the ghost."
     }
