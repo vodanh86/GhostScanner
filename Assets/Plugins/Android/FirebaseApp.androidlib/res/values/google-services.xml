@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:keep="@string/gcm_defaultSenderId,@string/google_storage_bucket,@string/project_id,@string/google_api_key,@string/google_crash_reporting_api_key,@string/google_app_id,@string/default_web_client_id">
-  <string name="gcm_defaultSenderId" translatable="false">532567190354</string>
-  <string name="google_storage_bucket" translatable="false">alpha---publishing.appspot.com</string>
-  <string name="project_id" translatable="false">alpha---publishing</string>
-  <string name="google_api_key" translatable="false">AIzaSyBn3c_JRZHBR4ACkX7ca_iVAZBZ9N23wyo</string>
-  <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBn3c_JRZHBR4ACkX7ca_iVAZBZ9N23wyo</string>
-  <string name="google_app_id" translatable="false">1:532567190354:android:64f00cc1487eb4c807288b</string>
-  <string name="default_web_client_id" translatable="false">532567190354-f7cddg61s84bibb5gki3f5ehjio4suv3.apps.googleusercontent.com</string>
+  <string name="gcm_defaultSenderId" translatable="false">215940711478</string>
+  <string name="google_storage_bucket" translatable="false">alpha---ghost-detector.appspot.com</string>
+  <string name="project_id" translatable="false">alpha---ghost-detector</string>
+  <string name="google_api_key" translatable="false">AIzaSyCeMBvLROxJv-L5cQQxv3gX_c256svCgvU</string>
+  <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCeMBvLROxJv-L5cQQxv3gX_c256svCgvU</string>
+  <string name="google_app_id" translatable="false">1:215940711478:android:a1caa621dc0cb26aea4497</string>
+  <string name="default_web_client_id" translatable="false">215940711478-h8fnitqf0nj2gdfic1s469h6m3vk3dh8.apps.googleusercontent.com</string>
 </resources>

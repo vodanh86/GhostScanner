@@ -74,10 +74,6 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (AdManager.Ins.CheckHasRewardAds(true) && ConfigManager.Instance.previousScene == "Main")
-        {
-            AdManager.Ins.showInterstitialAds("CallAtEndGame");
-        }
         count = 0;
         scanState = new ScanState();
         scanState.SetState((int)ScanState.State.SCANNING);
@@ -180,6 +176,14 @@ public class GameManager : MonoBehaviour
         ghostModel.GetComponent<Animator>().SetInteger("action", Random.Range(0, 4));
 
         yield return new WaitForSeconds(10.03f);
+
+        if (
+            ConfigManager.Instance.GetCurrentGhostIdx() > 2 && AdManager.Ins.CheckHasRewardAds(true)
+        )
+        {
+            AdManager.Ins.showInterstitialAds("CallAtEndGame");
+        }
+
         flashImage.SetActive(false);
         Time.timeScale = 0;
         canvasResult.SetActive(true);

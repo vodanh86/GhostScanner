@@ -58,13 +58,48 @@
     },
     {
       "name": "9",
-      "ghostName": "Freddy Krueger in A Nightmare on Elm Street",
+      "ghostName": "Freddy Krueger in A Nightmare on Elm Streets",
       "image": "9",
       "sex": "male",
       "description": " The Otis family moves into a castle that's haunted by a dead nobleman, who, much to his growing annoyance, cannot scare them no matter how hard he tries, and instead, it's the family who ends up spooking the ghost."
     } ,
     {
       "name": "10",
+      "ghostName": "Mrs Mills in The Others",
+      "image": "10",
+      "sex": "female",
+      "description": "Spanish genre film-makers do it again with Alejandro Amenábar’s haunted house mystery."
+    },
+    {
+      "name": "11",
+      "ghostName": "Daniel Robitaille in Candyman ",
+      "image": "11",
+      "sex": "male",
+      "description": "Looking into the bathroom mirror and saying “Candyman” five times will summon the hook-handed ghost of a black artist (Tony Todd) murdered by a lynch mob. Go on and say it, I dare you."
+    },
+    {
+      "name": "12",
+      "ghostName": "The Mind Flayer",
+      "image": "12",
+      "sex": "male",
+      "description": "the Mind Flayer is a monster that possesses a host, and uses its body as a vessel to carry out its evil."
+    },
+    {
+      "name": "13",
+      "ghostName": "The Holy Ghost in Fleabag",
+      "image": "13",
+      "sex": "female",
+      "description": "God, or some manifestation of his/her spirit, is floating around and unafraid to make its presence known in the second season of Fleabag. Making out with a priest?"
+    },
+    {
+      "name": "14",
+      "ghostName": "Denny Duquette, from Grey's Anatomy",
+      "image": "14",
+      "sex": "male",
+      "description": " The ghost of Denny Duquette was a breaking point for a lot of Grey’s Anatomy fans. Sometimes he appeared as a vision when someone died."
+    },
+    {
+      "name": "15",
       "ghostName": "White Clown",
       "image": "8",
       "sex": "male",

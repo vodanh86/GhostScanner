@@ -95,6 +95,10 @@ public class ConfigManager : MonoBehaviour
         return levelsInJson[currentLevel];
     }
 
+    public int GetCurrentGhostIdx(){
+        return currentGhost;
+    }
+
     public Ghost GetCurrentGhost()
     {
         return ghostsInJson[currentGhost];
