@@ -15,9 +15,10 @@ public class AdEnums
 
 public class AdManager : Singleton<AdManager>
 {
-    string bannerAdUnitId = "3bde43da57273cd4";
+    string interstitialUnitId = "3bde43da57273cd4";
     string rewardVideoAdUnitID = "2af602a55b2d996c";
-    string interstitialUnitId = "47ec80f0a78bd79d";
+    string  bannerAdUnitId= "47ec80f0a78bd79d";
+    string  mrecAdUnitId= "823784b7f30dc662";
     private int stepLoadAds = 0;
     Action OnEarnRewardAction = null;
 
