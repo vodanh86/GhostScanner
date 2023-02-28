@@ -95,6 +95,9 @@ public class MenuManager : MonoBehaviour
     public void NextLevel()
     {
         clickAudio.Play();
+        if (AdManager.Ins.CheckHasRewardAds(true)){
+            AdManager.Ins.showInterstitialAds("CallAtEndGame");
+        }
         Utils.SaveModel(ConfigManager.Instance.GetCurrentGhost().name, Constant.NOT_SAVED_MODEL);
         ConfigManager.Instance.NextLevel();
         SaveAndLoadScene(Constant.MAIN_SCENE_NAME);

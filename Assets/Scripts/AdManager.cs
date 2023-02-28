@@ -163,8 +163,9 @@ public class AdManager : Singleton<AdManager>
             {
                 if (!MaxSdk.IsRewardedAdReady(rewardVideoAdUnitID))
                 {
-                    noAdsPopup.SetActive(true);
-                    StartCoroutine(HidePopUp(noAdsPopup, 1.5f));
+                    //Debug.Log("video not ready");
+                   // noAdsPopup.SetActive(true);
+                    //StartCoroutine(HidePopUp(noAdsPopup, 1.5f));
                 }
             }
         }
@@ -205,7 +206,7 @@ public class AdManager : Singleton<AdManager>
 
     private void OnRewardedAdDisplayedEvent(string adUnitId, MaxSdkBase.AdInfo adInfo)
     {
-        //AppOpenAdManager.ResumeFromAds = false;
+        AppOpenAdManager.ResumeFromAds = false;
         if (OnEarnRewardAction != null)
         {
             OnEarnRewardAction.Invoke();
@@ -226,7 +227,7 @@ public class AdManager : Singleton<AdManager>
 
     private void OnRewardedAdHiddenEvent(string adUnitId, MaxSdkBase.AdInfo adInfo)
     {
-        //AppOpenAdManager.ResumeFromAds = false;
+        AppOpenAdManager.ResumeFromAds = false;
         // Rewarded ad is hidden. Pre-load the next ad
         LoadRewardedAd();
     }
@@ -247,18 +248,14 @@ public class AdManager : Singleton<AdManager>
 
     public bool ShowVideoAds(string _placement, Action rewardAction)
     {
-        //if (GameManager.Instance.debug)
-        //{
-
-        //    rewardAction.Invoke();
-        //    return true;
-        //}
-        //else
+        #if UNITY_EDITOR
+            rewardAction.Invoke();
+            return true;
+        #endif
         {
             if (MaxSdk.IsRewardedAdReady(rewardVideoAdUnitID))
             {
-                //CheckFrank
-                //AppOpenAdManager.ResumeFromAds = true;
+                AppOpenAdManager.ResumeFromAds = true;
                 OnEarnRewardAction = rewardAction;
                 //if (GameManager.Instance.isFirebaseReady)
                 //    {
@@ -352,7 +349,7 @@ public class AdManager : Singleton<AdManager>
 
     private void OnInterstitialDisplayedEvent(string adUnitId, MaxSdkBase.AdInfo adInfo)
     {
-        //AppOpenAdManager.ResumeFromAds = false;
+        AppOpenAdManager.ResumeFromAds = false;
     }
 
     private void OnInterstitialAdFailedToDisplayEvent(
@@ -370,7 +367,7 @@ public class AdManager : Singleton<AdManager>
     private void OnInterstitialHiddenEvent(string adUnitId, MaxSdkBase.AdInfo adInfo)
     {
         // Interstitial ad is hidden. Pre-load the next ad.
-        //AppOpenAdManager.ResumeFromAds = false;
+        AppOpenAdManager.ResumeFromAds = false;
         LoadInterstitial();
     }
 
@@ -382,7 +379,7 @@ public class AdManager : Singleton<AdManager>
         //}
         if (MaxSdk.IsInterstitialReady(interstitialUnitId))
         {
-            //AppOpenAdManager.ResumeFromAds = true;
+            AppOpenAdManager.ResumeFromAds = true;
             //if (ImageDataFromCamera.Instance.cameraMode)
             //{
             //    if (GameManager.Instance.isFirebaseReady)
