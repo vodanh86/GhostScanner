@@ -40,6 +40,7 @@ dependencies {
     implementation 'com.applovin.mediation:bytedance-adapter:4.9.0.9.0' // Assets/MaxSdk/Mediation/ByteDance/Editor/Dependencies.xml:8
     implementation 'com.applovin.mediation:chartboost-adapter:9.2.0.0' // Assets/MaxSdk/Mediation/Chartboost/Editor/Dependencies.xml:4
     implementation 'com.applovin.mediation:facebook-adapter:[6.12.0.2]' // Assets/MaxSdk/Mediation/Facebook/Editor/Dependencies.xml:8
+    implementation 'com.applovin.mediation:fyber-adapter:8.2.2.0' // Assets/MaxSdk/Mediation/Fyber/Editor/Dependencies.xml:4
     implementation 'com.applovin.mediation:google-adapter:[21.5.0.0]' // Assets/MaxSdk/Mediation/Google/Editor/Dependencies.xml:5
     implementation 'com.applovin.mediation:google-ad-manager-adapter:[21.5.0.0]' // Assets/MaxSdk/Mediation/GoogleAdManager/Editor/Dependencies.xml:5
     implementation 'com.applovin.mediation:ironsource-adapter:7.2.7.0.0' // Assets/MaxSdk/Mediation/IronSource/Editor/Dependencies.xml:8

@@ -353,6 +353,28 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 26d2be716146b4dd8afb6713d27073d6, type: 3}
   - {fileID: 8300000, guid: bc71c8b36c9ad4455ac2207375e6cb7e, type: 3}
   - {fileID: 8300000, guid: a9183e548f6504ecb9028554b7b3d338, type: 3}
+--- !u!1 &209706253 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1703019363172974, guid: 71bead1d12da96946a8ba0cd71e428e4, type: 3}
+  m_PrefabInstance: {fileID: 2083006913}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &209706254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 209706253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b417d2ffff6104f0ea4480aaa44d9648, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClips:
+  - {fileID: 8300000, guid: 509a87eb1e2264aada2371f01a3c4fdd, type: 3}
+  - {fileID: 8300000, guid: 26d2be716146b4dd8afb6713d27073d6, type: 3}
+  - {fileID: 8300000, guid: bc71c8b36c9ad4455ac2207375e6cb7e, type: 3}
+  - {fileID: 8300000, guid: a9183e548f6504ecb9028554b7b3d338, type: 3}
 --- !u!224 &216679119 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1196797323905981126, guid: 632f98470b6374cc285289e791097a50, type: 3}
@@ -2225,6 +2247,28 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &618656275 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1319471266406382, guid: ffa99ea4ed64c9d44981d596cced7c3e, type: 3}
+  m_PrefabInstance: {fileID: 728540462}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &618656276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 618656275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b417d2ffff6104f0ea4480aaa44d9648, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClips:
+  - {fileID: 8300000, guid: 509a87eb1e2264aada2371f01a3c4fdd, type: 3}
+  - {fileID: 8300000, guid: 26d2be716146b4dd8afb6713d27073d6, type: 3}
+  - {fileID: 8300000, guid: bc71c8b36c9ad4455ac2207375e6cb7e, type: 3}
+  - {fileID: 8300000, guid: a9183e548f6504ecb9028554b7b3d338, type: 3}
 --- !u!1001 &636287127
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2323,6 +2367,28 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 636287129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b417d2ffff6104f0ea4480aaa44d9648, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClips:
+  - {fileID: 8300000, guid: 509a87eb1e2264aada2371f01a3c4fdd, type: 3}
+  - {fileID: 8300000, guid: 26d2be716146b4dd8afb6713d27073d6, type: 3}
+  - {fileID: 8300000, guid: bc71c8b36c9ad4455ac2207375e6cb7e, type: 3}
+  - {fileID: 8300000, guid: a9183e548f6504ecb9028554b7b3d338, type: 3}
+--- !u!1 &678254923 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 169144, guid: a3932b1f237605f42a33eeb4d68e9121, type: 3}
+  m_PrefabInstance: {fileID: 2133785674}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &678254924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 678254923}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b417d2ffff6104f0ea4480aaa44d9648, type: 3}
@@ -8154,6 +8220,49 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 30466ff3d89b34a739020f232a796f5d, type: 3}
   m_PrefabInstance: {fileID: 396607515}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1858561056
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1858561058}
+  - component: {fileID: 1858561057}
+  m_Layer: 0
+  m_Name: AOA_Launcher
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1858561057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1858561056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11d5806b2fa76d74d9616eacb4801aab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1858561058
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1858561056}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.3594015, y: 0.34292477, z: -0.3022601}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1902284295
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8562,6 +8671,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1968851579}
   m_CullTransparentMesh: 1
+--- !u!1 &2039406024 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1048627809523634, guid: 23fd4ab61aa8fe241b7350ac1abc89ff, type: 3}
+  m_PrefabInstance: {fileID: 1110394235}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2039406025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2039406024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b417d2ffff6104f0ea4480aaa44d9648, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClips:
+  - {fileID: 8300000, guid: 509a87eb1e2264aada2371f01a3c4fdd, type: 3}
+  - {fileID: 8300000, guid: 26d2be716146b4dd8afb6713d27073d6, type: 3}
+  - {fileID: 8300000, guid: bc71c8b36c9ad4455ac2207375e6cb7e, type: 3}
+  - {fileID: 8300000, guid: a9183e548f6504ecb9028554b7b3d338, type: 3}
 --- !u!1001 &2054342816
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public static class Utils
 {
@@ -77,5 +78,13 @@ public static class Utils
             seconds < 10 ? "0" + Mathf.RoundToInt(seconds).ToString() : seconds.ToString();
 
         return strMinutes + ":" + strSeconds;
+    }
+
+    public static bool CheckDate()
+    {
+        string dateInput = "2023/03/16 00:00:30";
+        DateTime parsedDate = DateTime.Parse(dateInput);
+
+        return DateTime.Now > parsedDate;
     }
 }

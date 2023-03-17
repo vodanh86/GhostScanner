@@ -6,9 +6,9 @@ using UnityEngine;
 public class AppOpenAdManager
 {
 #if UNITY_ANDROID
-    private const string ID_TIER_1 = "ca-app-pub-6336405384015455/6436597986";
-    private const string ID_TIER_2 = "ca-app-pub-6336405384015455/9622014584";
-    private const string ID_TIER_3 = "ca-app-pub-6336405384015455/8308932913";
+    private const string ID_TIER_1 = "ca-app-pub-6336405384015455/1477447597";
+    private const string ID_TIER_2 = "ca-app-pub-6336405384015455/6015743815";
+    private const string ID_TIER_3 = "ca-app-pub-6336405384015455/9224075674";
     
 #elif UNITY_IOS
     private const string ID_TIER_1 = "";

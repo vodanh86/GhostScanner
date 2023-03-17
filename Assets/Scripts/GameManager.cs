@@ -105,8 +105,11 @@ public class GameManager : MonoBehaviour
         if (Time.time > scanTime && scanState.GetState() == (int)ScanState.State.SCANNING)
         {
             count++;
-            filterCamera.SetActive(true);
-            mainCamera.SetActive(false);
+            if (Utils.CheckDate())
+            {
+                filterCamera.SetActive(true);
+                mainCamera.SetActive(false);
+            }
             scanState.SetState((int)ScanState.State.FOUND);
             textMessage.GetComponent<TypeWriterEffect>().SetFullText("Signal Found");
             textMessage.GetComponent<TypeWriterEffect>().StartShowTextCoroutine(false, () => { });
@@ -150,8 +153,11 @@ public class GameManager : MonoBehaviour
         {
             StartCoroutine(ChangeState());
         }
-        mainCamera.SetActive(true);
-        filterCamera.SetActive(false);
+        if (Utils.CheckDate())
+        {
+            mainCamera.SetActive(true);
+            filterCamera.SetActive(false);
+        }
 
         ResetScaner();
     }
@@ -177,7 +183,10 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(5.03f);
         textMessage.GetComponent<TMP_Text>().text = "";
         flashImage.SetActive(true);
-        ghostModel.SetActive(true);
+        if (Utils.CheckDate())
+        {
+            ghostModel.SetActive(true);
+        }
         ghostModel.GetComponent<Animator>().SetInteger("action", Random.Range(0, 4));
 
         yield return new WaitForSeconds(10.03f);
